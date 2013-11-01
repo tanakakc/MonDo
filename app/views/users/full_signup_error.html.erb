@@ -1,0 +1,19 @@
+<% provide(:title, "サインアップエラー") %>
+<div id="container">
+  <%= render 'shared/hgroup' %>
+  <div id="signup-form">
+    <div class="panel panel-danger" style="width: 350px; margin-left: auto; margin-right: auto;">
+      <div class="panel-heading">
+        <h3 class="panel-title">入力内容を確認してください</h3>
+      </div>
+      <div class="panel-body">
+        <% if @user.errors.any? %>
+          <% @user.errors.full_messages.each do |msg| %>
+            <span class="text-danger"><%= msg %></span>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <p><%= link_to "もどる", :back %></p>
+  </div>
+</div>

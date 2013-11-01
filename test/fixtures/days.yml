@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  date: 1
+  q1: MyText
+  q2: MyText
+  q3: MyText
+  q4: MyText
+  done: false
+
+two:
+  user_id: 1
+  date: 1
+  q1: MyText
+  q2: MyText
+  q3: MyText
+  q4: MyText
+  done: false

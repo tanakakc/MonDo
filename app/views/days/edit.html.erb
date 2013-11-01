@@ -1,0 +1,25 @@
+<div id="container">
+  <h1 style="font-size: 190px;"><%= @date %></h1>
+  <div id="signup-form">
+  <p class="text-danger"><%= notice %></p>
+  <%= form_for :answer, url: days_path do |f| %>
+    <%= f.hidden_field :date, value: @date %>
+    <%= f.text_area :q1, class: 'form-control', placeholder: "答１", value: @edit.q1 %>
+    <br>
+    <%= f.text_area :q2, class: 'form-control', placeholder: "答２", value: @edit.q2 %>
+    <br>
+    <%= f.text_area :q3, class: 'form-control', placeholder: "答３", value: @edit.q3 %>
+    <br>
+    <%= f.text_area :q4, class: 'form-control', placeholder: "答４", value: @edit.q4 %>
+    <br>
+    <%= f.submit "答える", class: "btn btn-default" %>
+    <br><br>
+  <% end %>
+  <p>
+    <%= link_to "もどる", controller: "days", action: "show", id: @date %>
+  </p>
+  <p>
+    <%= link_to "ログアウト", logout_path, method: "delete" %>
+  </p>
+  </div>
+</div>

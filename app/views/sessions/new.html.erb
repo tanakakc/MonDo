@@ -1,0 +1,27 @@
+<% provide(:title, "ログイン") %>
+<div id="container">
+  <div id="signup">
+    <div id="signup-copy">
+      <%= render 'shared/hgroup' %>
+    </div>    
+  </div>
+  <div id="signup-form">
+    <p class="text-danger"><%= notice %></p>
+	<% if signed_in? %>
+	  <p>
+	    <%= link_to "ログアウト", logout_path, method: "delete" %>
+	  </p>
+	<% else %>
+	  <%= form_for(:session, url: login_path) do |f| %>
+	    <%= f.text_field :email, class: 'form-control', :placeholder => "Emailアドレス" %>
+	    <br>
+	    <%= f.text_field :password, class: 'form-control', type: "password", :placeholder => "パスワード" %>
+	    <br>
+	    <%= f.submit "ログイン", class: "btn btn-default" %>
+	    <br><br>
+	  <% end %>
+	  <p><a data-no-turbolink='true' href="/">サインアップ</a></p>
+	<% end %>
+  </div>
+  <%= render 'shared/footer' %>
+</div>
