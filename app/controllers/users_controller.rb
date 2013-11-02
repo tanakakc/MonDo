@@ -73,8 +73,8 @@ before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
         port:            '587',
         domain:          'smtp.gmail.com',
         authentication:  'plain',
-        user_name:       ENV["SMTP_USRNAME"] || MAIL_SECRET[:email],
-        password:        ENV["SMTP_PASSWD"] || MAIL_SECRET[:password]
+        user_name:       ENV.fetch("SMTP_USERNAME", MAIL_SECRET[:email]),
+        password:        ENV.fetch("SMTP_PASSWD", MAIL_SECRET[:password])
       )
     
       mail.deliver
@@ -100,7 +100,7 @@ before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
       user = User.find_by(id: params[:full_signup][:id])
       url = url_for(controller: "sessions", action: "new")
       mail = Mail.new do
-        from     ENV["SMTP_USRNAME"] || MAIL_SECRET[:email]
+        from     ENV.fetch("SMTP_USERNAME", MAIL_SECRET[:email])
         to       user.email
         subject  "本登録が完了しました！"
         body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/full_signup.text.erb")).result binding
@@ -111,8 +111,8 @@ before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
         port:            '587',
         domain:          'smtp.gmail.com',
         authentication:  'plain',
-        user_name:       ENV["SMTP_USRNAME"] || MAIL_SECRET[:email],
-        password:        ENV["SMTP_PASSWD"] || MAIL_SECRET[:password]
+        user_name:       ENV.fetch("SMTP_USERNAME", MAIL_SECRET[:email]),
+        password:        ENV.fetch("SMTP_PASSWD", MAIL_SECRET[:password])
       )
     
       mail.deliver
