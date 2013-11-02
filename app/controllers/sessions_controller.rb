@@ -9,7 +9,7 @@ before_action :signed_in_user, only: [:new]
   
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user.nil?
+    if user.nil? || user.password_digest.nil?
       redirect_to login_path, notice: '入力情報に誤りがあります' and return
     end
     authrized_user = user.authenticate(params[:session][:password])
