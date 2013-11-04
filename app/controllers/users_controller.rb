@@ -57,6 +57,7 @@ before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
     
     def pre_signup
       require 'mail'
+      defined?(MAIL_SECRET)
       user = User.find_by(email: params[:user][:email])
       hash_token = user.id.to_s + user.created_at.to_s + user.email
       hash_token = Digest::SHA1.hexdigest(hash_token.to_s)
@@ -97,6 +98,7 @@ before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
     
     def full_signup
       require 'mail'
+      defined?(MAIL_SECRET)
       user = User.find_by(id: params[:full_signup][:id])
       url = url_for(controller: "sessions", action: "new")
       mail = Mail.new do

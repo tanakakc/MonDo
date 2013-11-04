@@ -5,7 +5,9 @@ before_action :signed_in_user, only: [:index, :new, :show]
 before_action :started_user, only: [:index, :show]
 before_action :How_many_days_passed?, only: [:index, :show, :edit]
 
-
+  def index
+  end  
+  
   def new
     @date = params[:id].to_i
     if are_you_first_time?
@@ -21,6 +23,7 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
         redirect_to days_index_path
       end
     end
+    render layout: 'post'
   end
 
   def create
@@ -111,7 +114,6 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     def  started_user
       if are_you_first_time?
         redirect_to '/days/1/new'
-      else
       end
     end
     

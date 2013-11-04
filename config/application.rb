@@ -26,8 +26,9 @@ module Apps30
      config.autoload_paths += Dir["#{config.root}/lib/**/"]
      
     #自前で用意したjsファイルを読み込む
-    config.assets.precompile += ["modal_error.js"]
+    config.assets.precompile += ['*.js']
     config.assets.initialize_on_precompile = false
     config.assets.compress = true
+   
   end
 end

@@ -66,6 +66,25 @@ body {
 	      border-color: #828282;
       }
       
+      .modal-footer .btn-default {
+	      font-weight: 200;
+	      font-size: 16px;
+	      letter-spacing: 1px;
+	      color: #ffffff;
+	      background: #333333;
+	      border-color: #282828;
+	      width: 94px;
+      }
+      
+      .modal-footer .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+	      font-weight: 200;
+	      font-size: 16px;
+	      letter-spacing: 1px;
+	      color: #ffffff;
+	      background: #999999;
+	      border-color: #828282;
+      }
+      
       #detail{
 	      margin-top: 70px;
       }

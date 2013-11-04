@@ -1,39 +1,41 @@
 <div id="container">
-  <h1 style="font-size: 190px;"><%= @date %></h1>
+  <h1 style="font-size: 300px;"><%= @date %></h1>
   <div id="signup-form">
-  <p class="text-danger"><%= notice %></p>
-  <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <p class="text-danger"><%= notice %></p>
+    <div>
+      <%= link_to "問答する", "#", :'data-toggle' => "modal", :'data-target' => "#mondo_edit_modal", class: "btn btn-default" %>
+    </div>
+    <br>
+    <p>
+      <%= link_to "ログアウト", logout_path, method: "delete" %>
+    </p>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="mondo_edit_modal" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
+      <%= form_for :answer, url: days_path do |f| %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel"><%= "#{@date}日目の問答" %></h4>
       </div>
       <div class="modal-body">
-  <%= form_for :answer, url: days_path do |f| %>
-    <%= f.hidden_field :date, value: @date %>
-    <%= f.text_area :q1, class: 'form-control', placeholder: "答１" %>
-    <br>
-    <%= f.text_area :q2, class: 'form-control', placeholder: "答２" %>
-    <br>
-    <%= f.text_area :q3, class: 'form-control', placeholder: "答３" %>
-    <br>
-    <%= f.text_area :q4, class: 'form-control', placeholder: "答４" %>
-    <br>
-    <%= f.submit "答える", class: "btn btn-default" %>
-    <br><br>
-  <% end %>
-  </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <%= f.hidden_field :date, value: @date %>
+      <%= f.text_area :q1, class: 'form-control', placeholder: "答１" %>
+      <br>
+      <%= f.text_area :q2, class: 'form-control', placeholder: "答２" %>
+      <br>
+      <%= f.text_area :q3, class: 'form-control', placeholder: "答３" %>
+      <br>
+      <%= f.text_area :q4, class: 'form-control', placeholder: "答４" %>
+      <br><br>
       </div>
+      <div class="modal-footer">
+        <%= f.submit "答える", class: "btn btn-default", id: "mondo_answer" %>
+      </div>
+      <% end %>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-  <p>
-    <%= link_to "ログアウト", logout_path, method: "delete" %>
-  </p>
-  </div>
-</div>
