@@ -4,8 +4,19 @@ class BatchEmail
 
   def self.send_mail#(email)
     email = "kc@toiee.jp"
+    user_name = if defined?(MAIL_SECRET)
+                    MAIL_SECRET[:email]
+                  else
+                    ENV["SMTP_USERNAME"]
+                  end
+                  
+      passwd = if defined?(MAIL_SECRET)
+                 MAIL_SECRET[:password]
+               else
+                 ENV["SMTP_PASSWD"]
+               end
     mail = Mail.new do
-      from     ENV.fetch("SMTP_USERNAME", MAIL_SECRET[:email])
+      from     user_name
       to       "kc@toiee.jp"
       subject  "test"
       body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/body.text.erb")).result binding
@@ -16,8 +27,8 @@ class BatchEmail
       port:            '587',
       domain:          'smtp.gmail.com',
       authentication:  'plain',
-      user_name:       ENV.fetch("SMTP_USERNAME", MAIL_SECRET[:email]),
-      password:        ENV.fetch("SMTP_PASSWD", MAIL_SECRET[:password])
+      user_name:       user_name,
+      password:        passwd
     )
     
     mail.deliver
