@@ -61,17 +61,17 @@ before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
       hash_token = user.id.to_s + user.created_at.to_s + user.email
       hash_token = Digest::SHA1.hexdigest(hash_token.to_s)
       url = url_for(controller: "users", action: "password", id: user.id, hash_token: hash_token)
-      user_name = if defined?(MAIL_SECRET)
-                    MAIL_SECRET[:email]
-                  else
-                    ENV["SMTP_USERNAME"]
-                  end
+      if defined?(MAIL_SECRET)
+        user_name = MAIL_SECRET[:email]
+      else
+        user_name = ENV["SMTP_USERNAME"]
+      end
                   
-      passwd = if defined?(MAIL_SECRET)
-                 MAIL_SECRET[:password]
-               else
-                 ENV["SMTP_PASSWD"]
-               end
+      if defined?(MAIL_SECRET)
+        passwd = MAIL_SECRET[:password]
+      else
+        passwd = ENV["SMTP_PASSWD"]
+      end
       mail = Mail.new do
         from     user_name
         to       user.email
@@ -111,17 +111,17 @@ before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
       defined?(MAIL_SECRET)
       user = User.find_by(id: params[:full_signup][:id])
       url = url_for(controller: "sessions", action: "new")
-      user_name = if defined?(MAIL_SECRET)
-                    MAIL_SECRET[:email]
-                  else
-                    ENV["SMTP_USERNAME"]
-                  end
+      if defined?(MAIL_SECRET)
+        user_name = MAIL_SECRET[:email]
+      else
+        user_name = ENV["SMTP_USERNAME"]
+      end
                   
-      passwd = if defined?(MAIL_SECRET)
-                 MAIL_SECRET[:password]
-               else
-                 ENV["SMTP_PASSWD"]
-               end
+      if defined?(MAIL_SECRET)
+        passwd = MAIL_SECRET[:password]
+      else
+        passwd = ENV["SMTP_PASSWD"]
+      end
       mail = Mail.new do
         from     user_name
         to       user.email
