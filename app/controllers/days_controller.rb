@@ -62,10 +62,7 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     end
     
   end
-  
-#  
-# 10/17 URLへ少数が入力されたとき、どうするか 
-#
+ 
   def show
     @date = params[:id].to_i
     @edit = Day.find_by(user_id: current_user.id, date: @date)
@@ -77,14 +74,14 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     render layout: "modal"
   end
   
-  def edit
-    @date = params[:id].to_i
-    @edit = Day.find_by(user_id: current_user.id, date: @date)
-	unless @date == @passed_days
-	  flash[:notice] = "#{@passed_days}日目しか編集できません"
-	  redirect_to days_index_path
-	end
-  end
+  #def edit
+  #  @date = params[:id].to_i
+  #  @edit = Day.find_by(user_id: current_user.id, date: @date)
+  #	unless @date == @passed_days
+  #	  flash[:notice] = "#{@passed_days}日目しか編集できません"
+  #  redirect_to days_index_path
+  #	end
+  #end
 
   
   private
@@ -124,11 +121,11 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     
     # 回答後のレコード追加の処理
     def add_record
-      @date = 2
+      date = 2
       29.times do
-        @addrecord = Day.new(user_id: current_user.id, date: @date)
-        @addrecord.save
-        @date = @date + 1
+        addrecord = Day.new(user_id: current_user.id, date: date)
+        addrecord.save
+        date = date + 1
       end
     end
     

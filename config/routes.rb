@@ -10,10 +10,9 @@ Apps30::Application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   
   get '/days/index', to: 'days#index'
-  get '/days/:id/new', to: 'days#new'
+  get '/days/:id/new', to: 'days#new', constraints: {:id => /[0-9]+/}
   post '/days', to: 'days#create'
   get  '/days/:id', to: 'days#show', constraints: {:id => /[0-9]+/}
-  get '/days/:id/edit', to: 'days#edit'
     
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
