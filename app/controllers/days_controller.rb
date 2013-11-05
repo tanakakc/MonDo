@@ -22,8 +22,8 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
         flash[:notice] = "#{@passed_days}日目しか編集できません"
         redirect_to days_index_path
       end
+      render layout: 'post'
     end
-    render layout: 'post'
   end
 
   def create
