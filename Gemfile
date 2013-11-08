@@ -19,6 +19,7 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'whenever', require: false
 gem 'sprockets-rails', '2.0.0'
+gem 'useragent', "~> 0.9.0"
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

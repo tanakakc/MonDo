@@ -9,7 +9,7 @@
       <div class="panel-body">
         <% if @user.errors.any? %>
           <% @user.errors.full_messages.each do |msg| %>
-            <span class="text-danger"><%= msg %></span>
+            <span class="text-danger"><%= msg %></span><br>
           <% end %>
         <% end %>
       </div>

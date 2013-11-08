@@ -6,10 +6,36 @@
     <br><br>
     <p style="font-size: 14px; margin-bottom: 30px;" align="left">30日間、自身に問いかけることによって<br>卓越道の歩みを強めるためのWebサービスです。</p>
     <p>
-      <a data-no-turbolink='true' href="/">サインアップ</a>　/　
-      <a data-no-turbolink='true' href="/login">ログイン</a>
+      <%= link_to "サインアップ", root_path, :'data-no-turbolink' => "true" %>　/　
+      <%= link_to "ログイン", "#", :'data-toggle' => "modal", :'data-target' => "#mondo_edit_modal" %>
     </p>
     </div>
   </div>
   <%= render 'shared/footer' %>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="mondo_edit_modal" role="dialog">
+  <div class="modal-dialog" style="width: 400px;">
+    <div class="modal-content">
+      <%= form_for(:session, url: login_path) do |f| %>
+      <div class="modal-header" style="text-align: center;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"><%= "ログインフォーム" %></h4>
+      </div>
+      <div class="modal-body">
+        <div id="signup-form">
+          <br>
+	      <%= f.text_field :email, class: 'form-control', :placeholder => "Emailアドレス" %>
+	      <br>
+	      <%= f.text_field :password, class: 'form-control', type: "password", :placeholder => "パスワード" %>
+	      <br>
+        </div>
+        <div class="modal-footer" style="text-align: center;">
+          <%= f.submit "ログイン", class: "btn btn-default" %>
+        </div>
+      <% end %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

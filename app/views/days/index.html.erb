@@ -1,38 +1,40 @@
 <div style="width: 800px; margin: 100px auto;">
-  <%= "ようこそ、#{current_user.name}さん" %>
-  <br>
-  <p>
-    <span><%= "あなたは今、#{@passed_days}日目です。" %></span>
-    <span class="pull-right"><%= link_to "ログアウト", logout_path, method: "delete" %></span>
-  </p>
+  <%= render 'shared/hgroup3' %>
   <p class="text-danger"><%= notice %></p>
-  
   <div style="margin: 0 auto;">
     
-    <%# ここから条件文 %>
-    <% date = 1 #変数dateに1代入 %>
-    <% while date <= 30 && date <= @passed_days do #経過日数分処理を繰り返す %>
-    <div class="thumbnail" style="height: 250px; width: 250px; display: inline-block; margin: 5px 7px; padding: 4px 10px;">
-      <span style="font-size: 60px;"><%= date %></span>
-      <span><%= link_to "[show]", controller: "days", action: "show", id: date %></span>
-      <%# doneがtrueのレコードを検索 %>
-      <% find_record = Day.where(user_id: current_user.id, date: date).first %>
-      <% if find_record.done == true %>
-        <span><%= "[done!]" %></span>
-      <% else %>
-        <% q = 0 %>
-        <% [:q1, :q2, :q3, :q4].each do |i| %>
-          <% if find_record[i].present? %>
-          <% q = q + 1 %>
+    <% date = 1 %>
+    <% while date <= 30 && date <= @passed_days do %>
+      <a href="/days/<%= date %>" id="days_card">
+        <div class="thumbnail">
+          <span id="date"><%= "#{date}\s" %></span>
+          <% find_record = Day.where(user_id: current_user.id, date: date).first %>
+          <% if find_record.done == true %>
+            <span class="glyphicon glyphicon-ok-circle text-success" style="font-size: 18px;"></span>
+            <span class="text-success"><%= " done!" %></span>
+          <% else %>
+            <% q = 0 %>
+            <% [:q1, :q2, :q3, :q4].each do |i| %>
+              <% if find_record[i].present? %>
+                <% q = q + 1 %>
+              <% end %>
+            <% end %>
+            <span><%= "(#{q}/4)" %></span>
           <% end %>
-        <% end %>
-        <span><%= "(#{q}/4)" %></span>
-      <% end %>
-    </div>
-    <% date = date + 1 #処理が終わるごとにdateにプラス1 %>
-    <% end #ここまで条件文 %>
-    
+          <% q_num = 1 %>
+          <% [:q1, :q2, :q3, :q4].each do |ans| %>
+            <% new_ans = find_record[ans].to_s %>
+            <% if new_ans.length >= 13 %>
+              <% new_ans = new_ans[1..13] %>
+              <small><%= "#{q_num}\s.\s" + "#{new_ans}" + "..." %></small>
+            <% else %>
+              <small><%= "#{q_num}\s.\s" + "#{new_ans}" %></small>
+            <% end %>
+            <% q_num = q_num + 1 %>
+          <% end %>
+        </div>
+      </a>
+      <% date = date + 1 %>
+    <% end %>
   </div>
 </div>
-
-

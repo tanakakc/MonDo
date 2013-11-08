@@ -12,6 +12,31 @@
         <%= "さっそく「１日目の問答」をはじめてください。" %>
       </div>
     </div>
-    <p><a data-no-turbolink='true' href="/login">ログイン</a></p>
+    <p><%= link_to "ログイン", "#", :'data-toggle' => "modal", :'data-target' => "#mondo_edit_modal", :'data-no-turbolink' => "true" %></p>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="mondo_edit_modal" role="dialog">
+  <div class="modal-dialog" style="width: 400px;">
+    <div class="modal-content">
+      <%= form_for(:session, url: login_path) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"><%= "ログインフォーム" %></h4>
+      </div>
+      <div class="modal-body">
+        <div id="signup-form">
+	      <%= f.text_field :email, class: 'form-control', :placeholder => "Emailアドレス" %>
+	      <br>
+	      <%= f.text_field :password, class: 'form-control', type: "password", :placeholder => "パスワード" %>
+	      <br><br>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "ログイン", class: "btn btn-default" %>
+        </div>
+      <% end %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,6 +1,7 @@
 <div id="container">
   <h1 style="font-size: 190px;"><%= @date %></h1>
-  <p class="text-danger"><%= notice %></p>
+  <p class="text-success"><%= notice %></p>
+  <p class="text-danger"><%= alert %></p>
     <% @questions.each do |question| %>
       <p><%= question.q1 %></p>
       <p><%= question.q2 %></p>

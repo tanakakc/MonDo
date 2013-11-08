@@ -22,6 +22,7 @@
         <h4 class="modal-title" id="myModalLabel"><%= "#{@date}日目の問答" %></h4>
       </div>
       <div class="modal-body">
+      <br><br>
       <%= f.hidden_field :date, value: @date %>
       <%= f.text_area :q1, class: 'form-control', placeholder: "答１" %>
       <br>

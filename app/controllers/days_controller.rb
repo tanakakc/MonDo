@@ -6,6 +6,7 @@ before_action :started_user, only: [:index, :show]
 before_action :How_many_days_passed?, only: [:index, :show, :edit]
 
   def index
+    render layout: "days_index"
   end  
   
   def new
@@ -55,9 +56,10 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
       if @first_time
         add_record
       end
-      redirect_to controller: "days", action: "show", id: @date #days_index_path
+      flash[:notice] = "投稿を完了しました！"
+      redirect_to controller: "days", action: "show", id: @date
     elsif @empty == 4
-      flash[:notice] = "1つ以上入力してください"
+      flash[:alert] = "１つ以上入力してください"
       redirect_to controller: "days", action: "show", id: @date
     end
     
@@ -99,7 +101,7 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
   
     # サインインしているかどうか確認
     def signed_in_user
-      redirect_to login_path, notice: "ログインしてください" unless signed_in?
+      redirect_to root_path, notice: "ログインしてください" unless signed_in?
     end
     
     # はじめての訪問かどうか確認

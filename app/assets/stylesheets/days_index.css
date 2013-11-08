@@ -39,43 +39,53 @@ body {
 	      font-family: 'Chelsea Market', cursive;
       }
       
-      #content-movie p{
-	      font-size: 16px;
-      }
-            
-      .modal-footer .btn-default {
-	      font-weight: 200;
-	      font-size: 16px;
-	      letter-spacing: 1px;
-	      color: #ffffff;
-	      background: #333333;
-	      border-color: #282828;
-	      width: 94px;
+      #logout {
+	      /*font-family: 'Love Ya Like A Sister', cursive;*/
+	      font-size: 12px;
+	      opacity: 0.6;
       }
       
-      .modal-footer .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
-	      font-weight: 200;
-	      font-size: 16px;
-	      letter-spacing: 1px;
-	      color: #ffffff;
-	      background: #999999;
-	      border-color: #828282;
+      #days_card .thumbnail{
+           font-family: 'Love Ya Like A Sister', cursive;
+	       height: 250px; 
+	       width: 250px; 
+	       display: inline-block; 
+	       margin: 5px 7px; padding: 4px 10px;
+	       border: 1px solid #777;
       }
       
-      #detail{
-	      margin-top: 70px;
+      #days_card .thumbnail:hover{
+           font-family: 'Love Ya Like A Sister', cursive;
+	       height: 250px; 
+	       width: 250px; 
+	       display: inline-block; 
+	       margin: 5px 7px; padding: 4px 10px;
+	       border: 1px solid #777;
+	       box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.3);
       }
       
-      #detail p{
-	      color: #888888;
+      #days_card small{
+	      display: block;
+	      color: #999999;
+	      padding: 15px 15px 0 15px;
       }
       
-      #detail a{
-	      color: #888888;
+      a#days_card {
+	      color: #333;
+          text-decoration: none;
       }
       
-      #detail strong{
-	      font-family: 'Chelsea Market', cursive;
-	      letter-spacing: 2px;
-	      
+      a:hover#days_card, a:focus#days_card {
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      #date {
+	      font-size: 60px;
+      }
+      
+      #days_card ul {
+          list-style-type: none;
+	      height: 250px; 
+	      width: 250px;
       }
