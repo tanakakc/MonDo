@@ -26,8 +26,14 @@ module Apps30
      config.autoload_paths += Dir["#{config.root}/lib/**/"]
      
     #自前で用意したjsファイルを読み込む
-    config.assets.precompile += ['*.js', '*.css']
-    config.assets.initialize_on_precompile = false
-    config.assets.compress = true
+     config.assets.precompile += ['*.js', '*.css']
+     config.assets.initialize_on_precompile = false
+     config.assets.compress = true
+    
+    # Add the fonts path
+     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+
+    # Precompile additional assets
+     config.assets.precompile += %w( .svg .eot .woff .ttf )
   end
 end
