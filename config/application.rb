@@ -29,9 +29,5 @@ module Apps30
     config.assets.precompile += ['*.js', '*.css']
     config.assets.initialize_on_precompile = false
     config.assets.compress = true
-    
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
-    config.assets.precompile += %w( .svg .eot .woff .ttf )
-   
   end
 end
