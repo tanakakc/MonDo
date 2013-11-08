@@ -2,11 +2,15 @@
   <h1 style="font-size: 190px;"><%= @date %></h1>
   <p class="text-success"><%= notice %></p>
   <p class="text-danger"><%= alert %></p>
-    <% @questions.each do |question| %>
-      <p><%= question.q1 %></p>
-      <p><%= question.q2 %></p>
-      <p><%= question.q3 %></p>
-      <p><%= question.q4 %></p>
+    <% @answers.each do |answer| %>
+    　<p><%= "Q1. " + QUESTIONS[:q1] %></p>
+      <p><%= "A1. #{answer.q1}" %></p>
+      <p><%= "Q2. " + QUESTIONS[:q2] %></p>
+      <p><%= "A2. #{answer.q2}" %></p>
+      <p><%= "Q3. " + QUESTIONS[:q3] %></p>
+      <p><%= "A3. #{answer.q3}" %></p>
+      <p><%= "Q4. " + QUESTIONS[:q4] %></p>
+      <p><%= "A4. #{answer.q4}" %></p>
     <% end %>
     <br>
     <br><br>
@@ -29,16 +33,20 @@
       <%= form_for :answer, url: days_path do |f| %>
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel"><%= "#{@date}日目の問答" %></h4>
       </div>
       <div class="modal-body">
       <%= f.hidden_field :date, value: @date %>
+      <p><%= "Q1. " + QUESTIONS[:q1] %></p>
       <%= f.text_area :q1, class: 'form-control', placeholder: "答１", value: @edit.q1 %>
       <br>
+      <p><%= "Q2. " + QUESTIONS[:q2] %></p>
       <%= f.text_area :q2, class: 'form-control', placeholder: "答２", value: @edit.q2 %>
       <br>
+      <p><%= "Q3. " + QUESTIONS[:q3] %></p>
       <%= f.text_area :q3, class: 'form-control', placeholder: "答３", value: @edit.q3 %>
       <br>
+      <p><%= "Q4. " + QUESTIONS[:q4] %></p>
       <%= f.text_area :q4, class: 'form-control', placeholder: "答４", value: @edit.q4 %>
       <br><br>
       </div>
