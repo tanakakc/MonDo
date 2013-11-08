@@ -62,7 +62,6 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
       flash[:alert] = "１つ以上入力してください"
       redirect_to controller: "days", action: "show", id: @date
     end
-    
   end
  
   def show

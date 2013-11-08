@@ -25,7 +25,7 @@
           <% [:q1, :q2, :q3, :q4].each do |ans| %>
             <% new_ans = find_record[ans].to_s %>
             <% if new_ans.length >= 13 %>
-              <% new_ans = new_ans[1..13] %>
+              <% new_ans = new_ans[0..12] %>
               <small><%= "#{q_num}\s.\s" + "#{new_ans}" + "..." %></small>
             <% else %>
               <small><%= "#{q_num}\s.\s" + "#{new_ans}" %></small>
