@@ -68,7 +68,7 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
   def show
     @date = params[:id].to_i
     @edit = Day.find_by(user_id: current_user.id, date: @date)
-    @questions = Day.where(user_id: current_user.id, date: @date)
+    @answers = Day.where(user_id: current_user.id, date: @date)
     if @date <= 0 || @date > 30
       flash[:notice] = "無効な値が入力されました"
       redirect_to days_index_path and return
