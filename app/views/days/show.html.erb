@@ -1,27 +1,25 @@
 <div id="container">
-  <h1 style="font-size: 190px;"><%= @date %></h1>
+  <%= render 'shared/hgroup4' %>
+  <h1 id="big_date"><%= @date %></h1>
   <p class="text-success"><%= notice %></p>
   <p class="text-danger"><%= alert %></p>
+  <div class="text-left thumbnail" style="width: 500px; margin: 0 auto; padding: 0 30px; font-size: 16px;">
     <% @answers.each do |answer| %>
-    　<p><%= "Q1. " + QUESTIONS[:q1] %></p>
-      <p><%= "A1. #{answer.q1}" %></p>
-      <p><%= "Q2. " + QUESTIONS[:q2] %></p>
-      <p><%= "A2. #{answer.q2}" %></p>
-      <p><%= "Q3. " + QUESTIONS[:q3] %></p>
-      <p><%= "A3. #{answer.q3}" %></p>
-      <p><%= "Q4. " + QUESTIONS[:q4] %></p>
+    　<p class="text-muted"><%= "Q1. " + QUESTIONS[:q1] %></p>
+      <p><%= "A1. #{answer.q1}" %></p><hr>
+      <p class="text-muted"><%= "Q2. " + QUESTIONS[:q2] %></p>
+      <p><%= "A2. #{answer.q2}" %></p><hr>
+      <p class="text-muted"><%= "Q3. " + QUESTIONS[:q3] %></p>
+      <p><%= "A3. #{answer.q3}" %></p><hr>
+      <p class="text-muted"><%= "Q4. " + QUESTIONS[:q4] %></p>
       <p><%= "A4. #{answer.q4}" %></p>
     <% end %>
-    <br>
-    <br><br>
-  <p>
+  </div>
+  <p id="content_post">
     <% if @date == @passed_days %>
-    <%= link_to "編集", "#", :'data-toggle' => "modal", :'data-target' => "#mondo_edit_modal" %>
+    <br>
+    <%= link_to "問い直す", "#", :'data-toggle' => "modal", :'data-target' => "#mondo_edit_modal", class: "btn btn-default" %>
     <% end %>
-    <br>
-    <%= link_to "一覧へ", days_index_path %>
-    <br>
-    <%= link_to "ログアウト", logout_path, method: "delete" %>
   </p>
   </div>
 </div>

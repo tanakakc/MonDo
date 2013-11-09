@@ -6,15 +6,12 @@ body {
       }
       
       #container {
-	      text-align: center;
 	      width: 800px;
-	      margin: 100px auto;
+	      margin: 30px auto 100px auto;
       }
       
       #content {
-	      width: 500px;
-	      margin-left: auto;
-	      margin-right: auto;
+	      margin: 0 auto;
       }
       
       #content-copy {
@@ -25,8 +22,6 @@ body {
       #content-copy h1{
 	      letter-spacing: 4px;
 	      font-size: 30px;
-	      /*font-family: 'Londrina Outline', cursive;*/
-	      /*font-family: 'Skranji', cursive;*/
 	      font-family: 'Chelsea Market', cursive;
       }
       
@@ -34,19 +29,16 @@ body {
 	      font-size:12px;
 	      letter-spacing: 2px;
 	      margin-top: 0;
-	      /*font-family: 'Londrina Outline', cursive;*/
-	      /*font-family: 'Skranji', cursive;*/
 	      font-family: 'Chelsea Market', cursive;
       }
       
       #logout {
-	      /*font-family: 'Love Ya Like A Sister', cursive;*/
 	      font-size: 12px;
 	      opacity: 0.6;
       }
       
       #days_card .thumbnail{
-           font-family: 'Love Ya Like A Sister', cursive;
+           font-family: 'Chelsea Market', cursive;
 	       height: 250px; 
 	       width: 250px; 
 	       display: inline-block; 
@@ -55,7 +47,7 @@ body {
       }
       
       #days_card .thumbnail:hover{
-           font-family: 'Love Ya Like A Sister', cursive;
+           font-family: 'Chelsea Market', cursive;
 	       height: 250px; 
 	       width: 250px; 
 	       display: inline-block; 
@@ -71,7 +63,7 @@ body {
       }
       
       a#days_card {
-	      color: #333;
+	      color: #777;
           text-decoration: none;
       }
       
@@ -81,7 +73,7 @@ body {
       }
       
       #date {
-	      font-size: 60px;
+	      font-size: 50px;
       }
       
       #days_card ul {

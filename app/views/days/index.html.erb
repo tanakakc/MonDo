@@ -1,8 +1,7 @@
-<div style="width: 800px; margin: 100px auto;">
+<div id="container">
   <%= render 'shared/hgroup3' %>
   <p class="text-danger"><%= notice %></p>
-  <div style="margin: 0 auto;">
-    
+  <div id="content">    
     <% date = 1 %>
     <% while date <= 30 && date <= @passed_days do %>
       <a href="/days/<%= date %>" id="days_card">

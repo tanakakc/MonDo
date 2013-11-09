@@ -2,7 +2,8 @@
 
 class UsersController < ApplicationController
 before_action :signed_in_user, only: [:new]
-before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
+before_action :are_you_full_signuped?, :are_you_authorized?, only: [:password]
+before_action :resend_full_signup, only: [:password_create]
 
   def index
   end
@@ -19,9 +20,9 @@ before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
     @user = User.new(user_params)
     if @user.save
       pre_signup
-      render 'pre_signup_success'
+      render 'pre_signup_success', layout: 'signup'
     else
-      render 'pre_signup_error'
+      render 'pre_signup_error', layout: 'signup'
     end
   end
   
@@ -35,10 +36,10 @@ before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
     @user.update_attributes(password: params[:full_signup][:password], password_confirmation: params[:full_signup][:password_confirmation], act: true)
     if @user.save
       full_signup
-      render 'full_signup_success'
+      render 'full_signup_success', layout: 'signup'
     else
       @user.act = false
-      render 'full_signup_error'
+      render 'full_signup_error', layout: 'signup'
     end
   end
     
@@ -106,11 +107,19 @@ before_action :are_you_authorized?, :are_you_full_signuped?, only: [:password]
       end
     end
     
+    def resend_full_signup
+      user = User.where(id: params[:full_signup][:id]).first
+      if user.act == true
+        redirect_to root_path
+        flash[:notice] = "すでに登録済みです。"
+      end
+    end
+    
     def full_signup
       require 'mail'
       defined?(MAIL_SECRET)
       user = User.find_by(id: params[:full_signup][:id])
-      url = url_for(controller: "sessions", action: "new")
+      url = url_for(controller: "users", action: "new")
       if defined?(MAIL_SECRET)
         user_name = MAIL_SECRET[:email]
       else

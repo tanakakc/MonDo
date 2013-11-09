@@ -13,7 +13,8 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     @date = params[:id].to_i
     if are_you_first_time?
       unless @date == 1
-        redirect_to '/days/1/new'
+        flash[:notice] = "まずは1日目の問いに答えましょう！"
+        redirect_to '/days/1/new' and return
       else
         render layout: 'post'
       end
@@ -21,7 +22,7 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
       How_many_days_passed?
       unless @date == @passed_days
         flash[:notice] = "#{@passed_days}日目しか編集できません"
-        redirect_to days_index_path
+        redirect_to days_index_path and return
       end
       render layout: 'post'
     end
@@ -68,11 +69,11 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     @date = params[:id].to_i
     @edit = Day.find_by(user_id: current_user.id, date: @date)
     @answers = Day.where(user_id: current_user.id, date: @date)
-    if @date <= 0 || @date > 30
+    if @date <= 0 || @date > 30 || @date > @passed_days
       flash[:notice] = "無効な値が入力されました"
       redirect_to days_index_path and return
     end
-    render layout: "modal"
+    render layout: "show"
   end
   
   #def edit
@@ -111,6 +112,7 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     # はじめての訪問でURLに1以外を入力された時の処理
     def  started_user
       if are_you_first_time?
+        flash[:notice] = "まずは1日目の問いに答えましょう！"
         redirect_to '/days/1/new'
       end
     end

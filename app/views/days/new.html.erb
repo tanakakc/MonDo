@@ -1,14 +1,11 @@
 <div id="container">
-  <h1 style="font-size: 300px;"><%= @date %></h1>
-  <div id="signup-form">
-    <p class="text-danger"><%= notice %></p>
+  <%= render 'shared/hgroup4' %>
+  <p class="text-danger"><%= notice %></p>
+  <h1 id="big_date"><%= @date %></h1>
+  <div id="content_post">
     <div>
       <%= link_to "問答する", "#", :'data-toggle' => "modal", :'data-target' => "#mondo_edit_modal", class: "btn btn-default" %>
     </div>
-    <br>
-    <p>
-      <%= link_to "ログアウト", logout_path, method: "delete" %>
-    </p>
   </div>
 </div>
 
