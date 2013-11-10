@@ -1,10 +1,3 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-body {
-	     /* background: url(./img/ricepaper2.png) repeat;*/
-      }
-      
       #container {
 	      width: 800px;
 	      margin: 30px auto 100px auto;
@@ -30,6 +23,16 @@ body {
 	      letter-spacing: 2px;
 	      margin-top: 0;
 	      font-family: 'Chelsea Market', cursive;
+      }
+      
+      a h1, h2{
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      a:hover h1, h2{
+	      color: #333;
+          text-decoration: none;
       }
       
       #logout {

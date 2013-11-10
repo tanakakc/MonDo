@@ -19,6 +19,7 @@
         <h4 class="modal-title" id="myModalLabel"><%= "#{@date}日目の問答" %></h4>
       </div>
       <div class="modal-body">
+      <%= image_tag 'takuetsu_direction.png', width: "400px", style: "display: block; margin: 15px auto 30px auto;" %>
       <%= f.hidden_field :date, value: @date %>
       <p><%= "Q1. " + QUESTIONS[:q1] %></p>
       <%= f.text_area :q1, class: 'form-control', placeholder: "答１" %>
@@ -31,9 +32,8 @@
       <br>
       <p><%= "Q4. " + QUESTIONS[:q4] %></p>
       <%= f.text_area :q4, class: 'form-control', placeholder: "答４" %>
-      <br><br>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="text-align: center;">
         <%= f.submit "答える", class: "btn btn-default", id: "mondo_answer" %>
       </div>
       <% end %>

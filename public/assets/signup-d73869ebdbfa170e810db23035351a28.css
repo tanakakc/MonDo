@@ -1,10 +1,3 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-body {
-	     /* background: url(./img/ricepaper2.png) repeat;*/
-      }
-      
       #container {
 	      text-align: center;
 	      width: 800px;
@@ -24,16 +17,12 @@ body {
       #signup-copy h1{
 	      letter-spacing: 4px;
 	      font-size: 70px;
-	      /*font-family: 'Londrina Outline', cursive;*/
-	      /*font-family: 'Skranji', cursive;*/
 	      font-family: 'Chelsea Market', cursive;
       }
       
       #signup-copy h2{
 	      font-size: 23px;
 	      letter-spacing: 2px;
-	      /*font-family: 'Londrina Outline', cursive;*/
-	      /*font-family: 'Skranji', cursive;*/
 	      font-family: 'Chelsea Market', cursive;
       }
       
@@ -98,9 +87,6 @@ body {
       }
       
       #detail strong{
-	      /*font-family: 'Londrina Outline', cursive;*/
-	      /*font-family: 'Skranji', cursive;*/
 	      font-family: 'Chelsea Market', cursive;
-	      letter-spacing: 2px;
-	      
+	      letter-spacing: 2px;      
       }

@@ -1,20 +1,10 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-body {
-	     /* background: url(./img/ricepaper2.png) repeat;*/
-      }
-      
       #container {
-	      text-align: center;
 	      width: 800px;
-	      margin: 100px auto;
+	      margin: 30px auto 100px auto;
       }
       
       #content {
-	      width: 500px;
-	      margin-left: auto;
-	      margin-right: auto;
+	      margin: 0 auto;
       }
       
       #content-copy {
@@ -25,8 +15,6 @@ body {
       #content-copy h1{
 	      letter-spacing: 4px;
 	      font-size: 30px;
-	      /*font-family: 'Londrina Outline', cursive;*/
-	      /*font-family: 'Skranji', cursive;*/
 	      font-family: 'Chelsea Market', cursive;
       }
       
@@ -34,19 +22,26 @@ body {
 	      font-size:12px;
 	      letter-spacing: 2px;
 	      margin-top: 0;
-	      /*font-family: 'Londrina Outline', cursive;*/
-	      /*font-family: 'Skranji', cursive;*/
 	      font-family: 'Chelsea Market', cursive;
       }
       
+      a h1, h2{
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      a:hover h1, h2{
+	      color: #333;
+          text-decoration: none;
+      }
+      
       #logout {
-	      /*font-family: 'Love Ya Like A Sister', cursive;*/
 	      font-size: 12px;
 	      opacity: 0.6;
       }
       
       #days_card .thumbnail{
-           font-family: 'Love Ya Like A Sister', cursive;
+           font-family: 'Chelsea Market', cursive;
 	       height: 250px; 
 	       width: 250px; 
 	       display: inline-block; 
@@ -55,7 +50,7 @@ body {
       }
       
       #days_card .thumbnail:hover{
-           font-family: 'Love Ya Like A Sister', cursive;
+           font-family: 'Chelsea Market', cursive;
 	       height: 250px; 
 	       width: 250px; 
 	       display: inline-block; 
@@ -71,7 +66,7 @@ body {
       }
       
       a#days_card {
-	      color: #333;
+	      color: #777;
           text-decoration: none;
       }
       
@@ -81,7 +76,7 @@ body {
       }
       
       #date {
-	      font-size: 60px;
+	      font-size: 50px;
       }
       
       #days_card ul {
