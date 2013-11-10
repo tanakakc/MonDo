@@ -121,7 +121,7 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     # スタートして今、何日目かを確認
     def How_many_days_passed?
       @time_now = Time.now #今の時刻
-      @first_day = Day.find_by(user_id: current_user.id) #レコードを1つ取得
+      @first_day = Day.find_by(user_id: current_user.id, date: 1) #レコードを1つ取得
       @first_day = @first_day.created_at - 3.hours #1日目レコードの作成日時を取得
       @first_day = @first_day.change(hour: 3, minutes: 0, seconds: 0)
       @dif = @time_now - @first_day #今と作成日時の差分を計算
