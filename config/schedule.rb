@@ -24,5 +24,5 @@ set :output, { error: 'log/error.log', standard: 'log/cron.log' }
 
 
 every 1.minutes do
-  runner "Diosama.urryy"
+  runner "BatchEmail.get_name_and_email"
 end

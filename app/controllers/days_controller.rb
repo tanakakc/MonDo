@@ -20,9 +20,28 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
       end
     else
       How_many_days_passed?
-      unless @date == @passed_days
+      if @passed_days <= 30 && @date != @passed_days
         flash[:notice] = "#{@passed_days}日目しか編集できません"
         redirect_to days_index_path and return
+      elsif @passed_days >= 31
+        if @date <= 0 || @date > @passed_days || @date > 30 || @date != @passed_days
+          flash[:notice] = "30日経過しました。再チャレンジの場合は、ユーザーページからリセットを行ってください。"
+          redirect_to days_index_path and return
+        end
+      end
+    end
+
+    if !are_you_first_time? && @passed_days <= 30
+      @edit = Day.find_by(user_id: current_user.id, date: @date)
+      @empty = 0
+      [:q1, :q2, :q3, :q4].each do |i|
+        if @edit[i].blank?
+          @empty = @empty + 1
+        end
+      end 
+    
+      unless @empty == 4
+        redirect_to controller: "days", action: "show", id: @date and return
       end
       render layout: 'post'
     end
@@ -73,6 +92,17 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
       flash[:notice] = "無効な値が入力されました"
       redirect_to days_index_path and return
     end
+    
+    @empty = 0
+    [:q1, :q2, :q3, :q4].each do |i|
+      if @edit[i].blank?
+        @empty = @empty + 1
+      end
+    end 
+    
+    if @empty == 4 && @date == @passed_days
+      redirect_to controller: "days", action: "new", id: @date and return
+    end
     render layout: "show"
   end
   
@@ -113,7 +143,7 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     def  started_user
       if are_you_first_time?
         flash[:notice] = "まずは1日目の問いに答えましょう！"
-        redirect_to '/days/1/new'
+        redirect_to '/days/1/new' and return
       end
     end
     

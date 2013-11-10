@@ -1,23 +1,22 @@
 require 'mail'
 
-class BatchEmail
+class Batch::BatchEmail
 
-  def self.send_mail#(email)
-    email = "kc@toiee.jp"
-    user_name = if defined?(MAIL_SECRET)
-                    MAIL_SECRET[:email]
-                  else
-                    ENV["SMTP_USERNAME"]
-                  end
+  def self.send_mail(email)
+    if defined?(MAIL_SECRET)
+        user_name = MAIL_SECRET[:email]
+      else
+        user_name = ENV["SMTP_USERNAME"]
+      end
                   
-      passwd = if defined?(MAIL_SECRET)
-                 MAIL_SECRET[:password]
-               else
-                 ENV["SMTP_PASSWD"]
-               end
+      if defined?(MAIL_SECRET)
+        passwd = MAIL_SECRET[:password]
+      else
+        passwd = ENV["SMTP_PASSWD"]
+      end
     mail = Mail.new do
       from     user_name
-      to       "kc@toiee.jp"
+      to       email
       subject  "test"
       body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/body.text.erb")).result binding
     end
