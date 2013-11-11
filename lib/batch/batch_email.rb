@@ -1,20 +1,22 @@
 require 'mail'
+include Rails.application.routes.url_helpers
 
 class Batch::BatchEmail
 
   def self.send_mail(email, date)
-    url = "http://mondo30.herokuapp.com/days/#{date}/new"
+    default_url_options[:host] = "mondo30.herokuapp.com"
+    url = url_for(controller: "days", action: "new", id: date)
     if defined?(MAIL_SECRET)
-        user_name = MAIL_SECRET[:email]
-      else
-        user_name = ENV["SMTP_USERNAME"]
-      end
+      user_name = MAIL_SECRET[:email]
+    else
+      user_name = ENV["SMTP_USERNAME"]
+    end
                   
-      if defined?(MAIL_SECRET)
-        passwd = MAIL_SECRET[:password]
-      else
-        passwd = ENV["SMTP_PASSWD"]
-      end
+    if defined?(MAIL_SECRET)
+      passwd = MAIL_SECRET[:password]
+    else
+      passwd = ENV["SMTP_PASSWD"]
+    end
     mail = Mail.new do
       from     user_name
       to       email
@@ -40,7 +42,8 @@ class Batch::BatchEmail
       @user_info = User.where(id: i[0]).pluck(:name, :email).first
       
       @time_fix = i[1] - 3.hours
-      @time_fix = Time.now - @time_fix
+      @time_fix = @time_fix.change(hour: 3, minutes: 0, seconds: 0)
+      @time_fix = Time.zone.now - @time_fix
       @time_fix = @time_fix.to_i
       @passed_days = @time_fix / (60 * 60 * 24) + 1
       
