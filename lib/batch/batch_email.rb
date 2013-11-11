@@ -4,7 +4,7 @@ include Rails.application.routes.url_helpers
 class Batch::BatchEmail
 
   def self.send_mail(email, date)
-    if defined?(LOCAL_URL)
+    if defined?(DEV_URL)
       default_url_options[:host] = DEV_URL
     else
       default_url_options[:host] = ENV["PDC_URL"]
