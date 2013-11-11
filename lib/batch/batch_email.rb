@@ -4,7 +4,11 @@ include Rails.application.routes.url_helpers
 class Batch::BatchEmail
 
   def self.send_mail(email, date)
-    default_url_options[:host] = "mondo30.herokuapp.com"
+    if defined?(LOCAL_URL)
+      default_url_options[:host] = DEV_URL
+    else
+      default_url_options[:host] = ENV["PDC_URL"]
+    end
     url = url_for(controller: "days", action: "new", id: date)
     if defined?(MAIL_SECRET)
       user_name = MAIL_SECRET[:email]
