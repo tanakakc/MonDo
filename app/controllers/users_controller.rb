@@ -101,7 +101,10 @@ before_action :resend_full_signup, only: [:password_create]
     
     def are_you_full_signuped?
       user = User.where(id: params[:id]).first
-      if user.act == true
+      if user == nil
+        redirect_to root_path
+        flash[:notice] = "無効な値が入力されました"
+      elsif user.act == true
         redirect_to root_path
         flash[:notice] = "すでに登録済みです。"
       end
@@ -109,7 +112,10 @@ before_action :resend_full_signup, only: [:password_create]
     
     def resend_full_signup
       user = User.where(id: params[:full_signup][:id]).first
-      if user.act == true
+      if user == nil
+        redirect_to root_path
+        flash[:notice] = "無効な値が入力されました"
+      elsif user.act == true
         redirect_to root_path
         flash[:notice] = "すでに登録済みです。"
       end
