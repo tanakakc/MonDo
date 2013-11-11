@@ -1,3 +1,5 @@
+# coding: utf-8
+
 require 'mail'
 include Rails.application.routes.url_helpers
 
@@ -10,6 +12,7 @@ class Batch::BatchEmail
       default_url_options[:host] = ENV["PDC_URL"]
     end
     url = url_for(controller: "days", action: "new", id: date)
+    
     if defined?(MAIL_SECRET)
       user_name = MAIL_SECRET[:email]
     else
@@ -24,10 +27,11 @@ class Batch::BatchEmail
     mail = Mail.new do
       from     user_name
       to       email
-      subject  "test"
-      body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/body.text.erb")).result binding
+      subject  "【MonDo】30日チャレンジ：#{date}日目"
+      body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/daily_email.text.erb")).result binding
     end
     
+    mail.charset = 'utf-8' # It's important!
     mail.delivery_method(:smtp,
       address:         'smtp.gmail.com',
       port:            '587',
