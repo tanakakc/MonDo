@@ -4,4 +4,4 @@ QUESTIONS = { :q1 => "昨日、卓越性を発揮した場面はどこで�
               :q4 => "今日、どこで卓越性を発揮しますか？"
                }
               
-DEV_URL = "localhost"
+DEV_URL = "localhost:3000"
