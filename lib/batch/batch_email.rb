@@ -2,7 +2,8 @@ require 'mail'
 
 class Batch::BatchEmail
 
-  def self.send_mail(email)
+  def self.send_mail(email, date)
+    url = "http://mondo30.herokuapp.com/days/#{date}/new"
     if defined?(MAIL_SECRET)
         user_name = MAIL_SECRET[:email]
       else
@@ -44,7 +45,7 @@ class Batch::BatchEmail
       @passed_days = @time_fix / (60 * 60 * 24) + 1
       
       unless @passed_days >= 31 || @passed_days < 2
-        self.send_mail(@user_info[1])
+        self.send_mail(@user_info[1], @passed_days)
       end
       
     end
