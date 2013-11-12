@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
 before_action :signed_in_user, only: [:new]
+before_action :signed_in_user2, only: [:edit, :update]
 before_action :are_you_full_signuped?, :are_you_authorized?, only: [:password]
 before_action :resend_full_signup, only: [:password_create]
 
@@ -42,20 +43,45 @@ before_action :resend_full_signup, only: [:password_create]
       render 'full_signup_error', layout: 'signup'
     end
   end
-    
-  def login
+  
+  def edit
+    @id = params[:id].to_i
+    @user = User.find_by(id: current_user.id)
+    if @id == current_user.id
+      render layout: 'edit'
+    else
+      redirect_to days_index_path, notice: "そのページへはアクセスできません"
+    end
   end
   
+  def update
+    @user = User.find_by(id: current_user.id)
+    if @user && @user.update_attributes(user_edit_params)
+      flash[:notice] = "ユーザー情報を更新しました！"
+      redirect_to controller: "users", action: "edit", id: current_user.id and return
+    else
+      render 'edit', layout: 'edit'
+    end
+  end
+    
   private
   
     def user_params
       params.require(:user).permit(:name, :email)
+    end
+    
+    def user_edit_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
   
     def signed_in_user
       redirect_to days_index_path if signed_in?
     end
     
+    def signed_in_user2
+      redirect_to root_path, notice: "ログインしてください" unless signed_in?
+    end
+        
     def pre_signup
       require 'mail'
       user = User.find_by(email: params[:user][:email])
@@ -79,7 +105,8 @@ before_action :resend_full_signup, only: [:password_create]
         subject  "仮登録が完了しました！本文URLより本登録を済ませてください。"
         body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/pre_signup.text.erb")).result binding
       end
-    
+      
+      mail.charset = 'utf-8' # It's important!
       mail.delivery_method(:smtp,
         address:         'smtp.gmail.com',
         port:            '587',
@@ -143,7 +170,8 @@ before_action :resend_full_signup, only: [:password_create]
         subject  "本登録が完了しました！"
         body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/full_signup.text.erb")).result binding
       end
-    
+      
+      mail.charset = 'utf-8' # It's important!
       mail.delivery_method(:smtp,
         address:         'smtp.gmail.com',
         port:            '587',

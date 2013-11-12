@@ -4,6 +4,8 @@ Apps30::Application.routes.draw do
   get '/detail', to: 'users#detail'
   get '/users/password/:id/:hash_token', to: 'users#password', as: 'password'
   post '/password/create', to: 'users#password_create'
+  get '/:id/edit', to: 'users#edit', constraints: {:id => /[0-9]+/}
+  patch '/edit/update', to: 'users#update'
 
   post '/login', to: 'sessions#create'
   get '/login', to: 'sessions#new'
@@ -13,6 +15,7 @@ Apps30::Application.routes.draw do
   get '/days/:id/new', to: 'days#new', constraints: {:id => /[0-9]+/}
   post '/days', to: 'days#create'
   get  '/days/:id', to: 'days#show', constraints: {:id => /[0-9]+/}
+  delete '/days/reset', to: 'days#destroy'
     
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

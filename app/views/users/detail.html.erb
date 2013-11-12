@@ -5,10 +5,14 @@
     <iframe src="http://embed.ted.com/talks/lang/ja/matt_cutts_try_something_new_for_30_days.html" width="500" height="281" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
     <br><br>
     <p style="font-size: 14px; margin-bottom: 30px;" align="left">30日間、自身に問いかけることによって<br>卓越道の歩みを強めるためのWebサービスです。</p>
+    <% if signed_in? %>
+      <p><%= link_to "ログアウト", logout_path, method: "delete" %></p>
+    <% else %>
     <p>
       <%= link_to "サインアップ", root_path, :'data-no-turbolink' => "true" %>　/　
       <%= link_to "ログイン", "#", :'data-toggle' => "modal", :'data-target' => "#mondo_edit_modal" %>
     </p>
+    <% end %>
     </div>
   </div>
   <%= render 'shared/footer' %>

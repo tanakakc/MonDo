@@ -2,6 +2,8 @@ ja:
   attributes:
     name: "名前"
     email: "メールアドレス"
+    password: "パスワード"
+    password_confirmation: "パスワードの再確認"
   date:
     abbr_day_names:
     - 日

@@ -43,6 +43,11 @@
 	      opacity: 0.6;
       }
       
+      #to_edit {
+	      font-size: 12px;
+	      opacity: 0.6;
+      }
+      
       #to_index {
 	      font-size: 12px;
 	      opacity: 0.6;

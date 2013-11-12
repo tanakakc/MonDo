@@ -2,8 +2,9 @@
 
 class DaysController < ApplicationController
 before_action :signed_in_user, only: [:index, :new, :show]
+before_action :correct_user, only: [:destroy]
 before_action :started_user, only: [:index, :show]
-before_action :How_many_days_passed?, only: [:index, :show, :edit]
+before_action :how_many_days_passed?, only: [:index, :show, :edit]
 
   def index
     render layout: "days_index"
@@ -13,19 +14,19 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     @date = params[:id].to_i
     if are_you_first_time?
       unless @date == 1
-        flash[:notice] = "まずは1日目の問いに答えましょう！"
+        flash[:alert] = "まずは1日目の問いに答えましょう！"
         redirect_to '/days/1/new' and return
       else
         render layout: 'post'
       end
     else
-      How_many_days_passed?
+      how_many_days_passed?
       if @passed_days <= 30 && @date != @passed_days
         flash[:notice] = "#{@passed_days}日目しか編集できません"
         redirect_to days_index_path and return
       elsif @passed_days >= 31
         if @date <= 0 || @date > @passed_days || @date > 30 || @date != @passed_days
-          flash[:notice] = "30日経過しました。再チャレンジの場合は、ユーザーページからリセットを行ってください。"
+          flash[:notice] = "30日経過しました。再チャレンジの場合は、マイページからリセットを行ってください。"
           redirect_to days_index_path and return
         end
       end
@@ -106,20 +107,16 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     render layout: "show"
   end
   
-  #def edit
-  #  @date = params[:id].to_i
-  #  @edit = Day.find_by(user_id: current_user.id, date: @date)
-  #	unless @date == @passed_days
-  #	  flash[:notice] = "#{@passed_days}日目しか編集できません"
-  #  redirect_to days_index_path
-  #	end
-  #end
-
+  def destroy
+    Day.where(user_id: current_user.id).destroy_all
+    flash[:notice] = "リセットしました！"
+    redirect_to controller: "days", action: "new", id: 1
+  end
   
   private
   
     # スタートして今、何日目かを確認
-    def How_many_days_passed?
+    def how_many_days_passed?
       @time_now = Time.zone.now #今の時刻
       @first_day = Day.find_by(user_id: current_user.id, date: 1) #レコードを1つ取得
       @first_day = @first_day.created_at - 3.hours #1日目レコードの作成日時を取得
@@ -134,6 +131,11 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
       redirect_to root_path, notice: "ログインしてください" unless signed_in?
     end
     
+    # リセットをするユーザーがログインユーザーかどうか確認
+    def correct_user
+      redirect_to root_path, notice: "その行為は許可されていません" unless current_user.id?
+    end
+    
     # はじめての訪問かどうか確認
     def are_you_first_time?
       Day.where(user_id: current_user.id).count == 0
@@ -142,7 +144,7 @@ before_action :How_many_days_passed?, only: [:index, :show, :edit]
     # はじめての訪問でURLに1以外を入力された時の処理
     def  started_user
       if are_you_first_time?
-        flash[:notice] = "まずは1日目の問いに答えましょう！"
+        flash[:alert] = "まずは1日目の問いに答えましょう！"
         redirect_to '/days/1/new' and return
       end
     end

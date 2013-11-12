@@ -1,0 +1,12 @@
+<% if @user.errors.any? %>
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title">ERROR: <%= @user.errors.count.to_s + "つのエラーがあります" %></h3>
+    </div>
+    <div class="panel-body">
+    <% @user.errors.full_messages.each do |msg| %>
+      <span class="text-danger"><%= msg %></span><br>
+    <% end %>
+    </div>
+  </div>
+<% end %>

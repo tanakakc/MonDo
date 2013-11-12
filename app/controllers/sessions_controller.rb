@@ -12,7 +12,7 @@ before_action :signed_in_user, only: [:new]
       redirect_to root_path, alert: '入力情報に誤りがあります' and return
     end
     authrized_user = user.authenticate(params[:session][:password])
-    if authrized_user
+    if user && authrized_user
       sign_in user
       redirect_to days_index_path
     else

@@ -40,6 +40,11 @@
 	      opacity: 0.6;
       }
       
+      #to_edit {
+	      font-size: 12px;
+	      opacity: 0.6;
+      }
+      
       #days_card .thumbnail{
            font-family: 'Chelsea Market', cursive;
 	       height: 250px; 
