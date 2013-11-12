@@ -4,12 +4,6 @@
 	      margin: 30px auto 100px auto;
       }
       
-      #content_post {
-	      width: 500px;
-	      margin-left: auto;
-	      margin-right: auto;
-      }
-      
       #content-copy {
 	      margin-bottom: 0;
 	      text-align: left;
@@ -37,8 +31,13 @@
 	      color: #333;
           text-decoration: none;
       }
-           
+      
       #logout {
+	      font-size: 12px;
+	      opacity: 0.6;
+      }
+      
+      #to_edit {
 	      font-size: 12px;
 	      opacity: 0.6;
       }
@@ -48,42 +47,38 @@
 	      opacity: 0.6;
       }
       
-      #big_date {
-          font-family: 'Chelsea Market', cursive;
-	      font-size: 190px;
-	      margin-top: 40px;
+      .content_edit {
+	      width: 500px;
+	      margin-top: 50px;
+	      margin-left: auto;
+	      margin-right: auto;
       }
       
-      #content_post .btn-default {
+      .content_edit h1{
+	      font-size: 25px;
+	      margin: 0 auto;
+      }
+      
+      .content_edit label{
+          display: block;
+	      text-align: left;
+      }
+      
+      .content_edit .btn {
+	      font-size: 16px;
+      }
+      
+      .content_edit .btn-default {
 	      font-weight: 200;
 	      font-size: 16px;
 	      letter-spacing: 1px;
 	      color: #ffffff;
 	      background: #333333;
 	      border-color: #282828;
-	      width: 94px;
+	      width: 140px;
       }
       
-      #content_post .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
-	      font-weight: 200;
-	      font-size: 16px;
-	      letter-spacing: 1px;
-	      color: #ffffff;
-	      background: #999999;
-	      border-color: #828282;
-      }
-      
-      .modal-footer .btn-default {
-	      font-weight: 200;
-	      font-size: 16px;
-	      letter-spacing: 1px;
-	      color: #ffffff;
-	      background: #333333;
-	      border-color: #282828;
-	      width: 94px;
-      }
-      
-      .modal-footer .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+      .content_edit .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
 	      font-weight: 200;
 	      font-size: 16px;
 	      letter-spacing: 1px;
