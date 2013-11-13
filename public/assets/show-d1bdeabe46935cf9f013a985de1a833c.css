@@ -37,6 +37,10 @@
 	      color: #333;
           text-decoration: none;
       }
+      
+      #content-copy .pull-right{
+	      margin-top: 33px;
+      }
            
       #logout {
 	      font-size: 12px;
