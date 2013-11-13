@@ -45,13 +45,8 @@ before_action :resend_full_signup, only: [:password_create]
   end
   
   def edit
-    @id = params[:id].to_i
     @user = User.find_by(id: current_user.id)
-    if @id == current_user.id
-      render layout: 'edit'
-    else
-      redirect_to days_index_path, notice: "そのページへはアクセスできません"
-    end
+    render layout: 'edit'
   end
   
   def update
@@ -79,7 +74,7 @@ before_action :resend_full_signup, only: [:password_create]
     end
     
     def signed_in_user2
-      redirect_to root_path, notice: "ログインしてください" unless signed_in?
+      redirect_to root_path, alert: "ログインしてください" unless signed_in?
     end
         
     def pre_signup
@@ -102,7 +97,7 @@ before_action :resend_full_signup, only: [:password_create]
       mail = Mail.new do
         from     user_name
         to       user.email
-        subject  "仮登録が完了しました！本文URLより本登録を済ませてください。"
+        subject  "【MonDo】仮登録が完了しました！本文URLより本登録を済ませてください。"
         body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/pre_signup.text.erb")).result binding
       end
       
@@ -130,10 +125,10 @@ before_action :resend_full_signup, only: [:password_create]
       user = User.where(id: params[:id]).first
       if user == nil
         redirect_to root_path
-        flash[:notice] = "無効な値が入力されました"
+        flash[:alert] = "無効な値が入力されました"
       elsif user.act == true
         redirect_to root_path
-        flash[:notice] = "すでに登録済みです。"
+        flash[:alert] = "すでに登録済みです。"
       end
     end
     
@@ -141,16 +136,15 @@ before_action :resend_full_signup, only: [:password_create]
       user = User.where(id: params[:full_signup][:id]).first
       if user == nil
         redirect_to root_path
-        flash[:notice] = "無効な値が入力されました"
+        flash[:alert] = "無効な値が入力されました"
       elsif user.act == true
         redirect_to root_path
-        flash[:notice] = "すでに登録済みです。"
+        flash[:alert] = "すでに登録済みです。"
       end
     end
     
     def full_signup
       require 'mail'
-      defined?(MAIL_SECRET)
       user = User.find_by(id: params[:full_signup][:id])
       url = url_for(controller: "users", action: "new")
       if defined?(MAIL_SECRET)
@@ -167,7 +161,7 @@ before_action :resend_full_signup, only: [:password_create]
       mail = Mail.new do
         from     user_name
         to       user.email
-        subject  "本登録が完了しました！"
+        subject  "【MonDo】本登録が完了しました！"
         body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/full_signup.text.erb")).result binding
       end
       

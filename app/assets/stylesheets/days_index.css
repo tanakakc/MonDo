@@ -35,6 +35,10 @@
           text-decoration: none;
       }
       
+      #content-copy .pull-right{
+	      margin-top: 33px;
+      }
+      
       #logout {
 	      font-size: 12px;
 	      opacity: 0.6;
@@ -45,7 +49,7 @@
 	      opacity: 0.6;
       }
       
-      #days_card .thumbnail{
+      .days_card .thumbnail{
            font-family: 'Chelsea Market', cursive;
 	       height: 250px; 
 	       width: 250px; 
@@ -54,7 +58,7 @@
 	       border: 1px solid #777;
       }
       
-      #days_card .thumbnail:hover{
+      .days_card .thumbnail:hover{
            font-family: 'Chelsea Market', cursive;
 	       height: 250px; 
 	       width: 250px; 
@@ -64,18 +68,18 @@
 	       box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.3);
       }
       
-      #days_card small{
+      .days_card small{
 	      display: block;
 	      color: #999999;
 	      padding: 15px 15px 0 15px;
       }
       
-      a#days_card {
+      a.days_card {
 	      color: #777;
           text-decoration: none;
       }
       
-      a:hover#days_card, a:focus#days_card {
+      a:hover.days_card, a:focus.days_card {
 	      color: #333;
           text-decoration: none;
       }
@@ -84,7 +88,7 @@
 	      font-size: 50px;
       }
       
-      #days_card ul {
+      .days_card ul {
           list-style-type: none;
 	      height: 250px; 
 	      width: 250px;

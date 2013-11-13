@@ -128,12 +128,12 @@ before_action :how_many_days_passed?, only: [:index, :show, :edit]
   
     # サインインしているかどうか確認
     def signed_in_user
-      redirect_to root_path, notice: "ログインしてください" unless signed_in?
+      redirect_to root_path, alert: "ログインしてください" unless signed_in?
     end
     
     # リセットをするユーザーがログインユーザーかどうか確認
     def correct_user
-      redirect_to root_path, notice: "その行為は許可されていません" unless current_user.id?
+      redirect_to root_path, alert: "その行為は許可されていません" unless current_user.id?
     end
     
     # はじめての訪問かどうか確認

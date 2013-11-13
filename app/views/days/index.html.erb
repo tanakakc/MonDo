@@ -1,10 +1,12 @@
 <div id="container">
   <%= render 'shared/hgroup3' %>
   <p class="text-danger"><%= notice %></p>
+  <% remaining_days = 30 - @passed_days %>
   <div id="content">    
+    <span align="right" class="text-info" style="display: block;"><%= "チャレンジ達成まで、あと【#{remaining_days}日】" %></span>
     <% date = 1 %>
     <% while date <= 30 && date <= @passed_days do %>
-      <a href="/days/<%= date %>" id="days_card">
+      <a href="/days/<%= date %>" class="days_card">
         <div class="thumbnail">
           <span id="date"><%= "#{date}\s" %></span>
           <% find_record = Day.where(user_id: current_user.id, date: date).first %>

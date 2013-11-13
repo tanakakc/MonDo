@@ -2,7 +2,7 @@
 <div id="container">
   <%= render 'shared/hgroup' %>
   <div id="signup-form">
-    <p class="text-danger"><%= notice %></p>
+    <p class="text-success"><%= notice %></p>
     <p class="text-danger"><%= alert %></p>
     <%= form_for :user, url: root_path do |f| %>
       <%= f.text_field :name, class: 'form-control', placeholder: "お名前" %>
@@ -32,6 +32,7 @@
 	      <%= f.text_field :email, class: 'form-control', :placeholder => "Emailアドレス" %>
 	      <br>
 	      <%= f.text_field :password, class: 'form-control', type: "password", :placeholder => "パスワード" %>
+	      <small class="text-center" style="display: block;"><%= link_to "パスワードをお忘れの場合", password_resets_new_path %></small>
 	      <br>
         </div>
         <div class="modal-footer" style="text-align: center;">
