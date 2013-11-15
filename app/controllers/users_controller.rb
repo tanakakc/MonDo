@@ -83,10 +83,17 @@ before_action :resend_full_signup, only: [:password_create]
       hash_token = user.id.to_s + user.created_at.to_s + user.email
       hash_token = Digest::SHA1.hexdigest(hash_token.to_s)
       url = url_for(controller: "users", action: "password", id: user.id, hash_token: hash_token)
+      
       if defined?(MAIL_SECRET)
-        user_name = MAIL_SECRET[:email]
+        user_address = MAIL_SECRET[:email]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format   
       else
-        user_name = ENV["SMTP_USERNAME"]
+        user_address = ENV["SMTP_USERNAME"]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format
       end
                   
       if defined?(MAIL_SECRET)
@@ -97,7 +104,7 @@ before_action :resend_full_signup, only: [:password_create]
       mail = Mail.new do
         from     user_name
         to       user.email
-        subject  "【MonDo】仮登録が完了しました！本文URLより本登録を済ませてください。"
+        subject  "【MonDo】#{user.name}さま、本登録をお願いします"
         body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/pre_signup.text.erb")).result binding
       end
       
@@ -107,7 +114,7 @@ before_action :resend_full_signup, only: [:password_create]
         port:            '587',
         domain:          'smtp.gmail.com',
         authentication:  'plain',
-        user_name:       user_name,
+        user_name:       user_address,
         password:        passwd
       )
     
@@ -148,9 +155,15 @@ before_action :resend_full_signup, only: [:password_create]
       user = User.find_by(id: params[:full_signup][:id])
       url = url_for(controller: "users", action: "new")
       if defined?(MAIL_SECRET)
-        user_name = MAIL_SECRET[:email]
+        user_address = MAIL_SECRET[:email]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format   
       else
-        user_name = ENV["SMTP_USERNAME"]
+        user_address = ENV["SMTP_USERNAME"]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format
       end
                   
       if defined?(MAIL_SECRET)
@@ -161,7 +174,7 @@ before_action :resend_full_signup, only: [:password_create]
       mail = Mail.new do
         from     user_name
         to       user.email
-        subject  "【MonDo】本登録が完了しました！"
+        subject  "【MonDo】ようこそ、MonDoへ！"
         body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/full_signup.text.erb")).result binding
       end
       
@@ -171,7 +184,7 @@ before_action :resend_full_signup, only: [:password_create]
         port:            '587',
         domain:          'smtp.gmail.com',
         authentication:  'plain',
-        user_name:       user_name,
+        user_name:       user_address,
         password:        passwd
       )
     

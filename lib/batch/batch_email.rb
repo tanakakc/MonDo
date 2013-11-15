@@ -14,10 +14,16 @@ class Batch::BatchEmail
     url = url_for(controller: "days", action: "new", id: date)
     
     if defined?(MAIL_SECRET)
-      user_name = MAIL_SECRET[:email]
-    else
-      user_name = ENV["SMTP_USERNAME"]
-    end
+        user_address = MAIL_SECRET[:email]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format   
+      else
+        user_address = ENV["SMTP_USERNAME"]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format
+      end
                   
     if defined?(MAIL_SECRET)
       passwd = MAIL_SECRET[:password]
@@ -37,7 +43,7 @@ class Batch::BatchEmail
       port:            '587',
       domain:          'smtp.gmail.com',
       authentication:  'plain',
-      user_name:       user_name,
+      user_name:       user_address,
       password:        passwd
     )
     

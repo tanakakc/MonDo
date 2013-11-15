@@ -50,9 +50,15 @@ before_action :signed_in_user
       user = User.find_by(email: params[:user][:email])
       url = url_for(controller: "password_resets", action: "edit", hash_token: user.password_reset_token)
       if defined?(MAIL_SECRET)
-        user_name = MAIL_SECRET[:email]
+        user_address = MAIL_SECRET[:email]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format   
       else
-        user_name = ENV["SMTP_USERNAME"]
+        user_address = ENV["SMTP_USERNAME"]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format
       end
                   
       if defined?(MAIL_SECRET)
@@ -73,7 +79,7 @@ before_action :signed_in_user
         port:            '587',
         domain:          'smtp.gmail.com',
         authentication:  'plain',
-        user_name:       user_name,
+        user_name:       user_address,
         password:        passwd
       )
     
@@ -86,9 +92,15 @@ before_action :signed_in_user
       user = @user
       url = url_for(controller: "users", action: "new")
       if defined?(MAIL_SECRET)
-        user_name = MAIL_SECRET[:email]
+        user_address = MAIL_SECRET[:email]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format   
       else
-        user_name = ENV["SMTP_USERNAME"]
+        user_address = ENV["SMTP_USERNAME"]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format
       end
                   
       if defined?(MAIL_SECRET)
@@ -109,7 +121,7 @@ before_action :signed_in_user
         port:            '587',
         domain:          'smtp.gmail.com',
         authentication:  'plain',
-        user_name:       user_name,
+        user_name:       user_address,
         password:        passwd
       )
     
