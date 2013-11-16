@@ -6,8 +6,6 @@ Apps30::Application.routes.draw do
   post '/password/create', to: 'users#password_create'
   get '/edit', to: 'users#edit'
   patch '/edit/update', to: 'users#update'
-  get '/edit_db/:id', to: "users#edit_db"
-  post '/edit_db', to: "users#create_db"
 
   post '/login', to: 'sessions#create'
   get '/login', to: 'sessions#new'
