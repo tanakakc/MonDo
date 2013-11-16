@@ -6,8 +6,9 @@
     <% end %>
   </hgroup>
   <div class="pull-right">
-    <span id="to_index"><%= link_to "一覧へ", days_index_path %>　/　</span>
-    <span id="to_edit"><%= link_to "マイページ", controller: "users", action: "edit" %>　/　</span>
-    <span id="logout"><%= link_to "ログアウト", logout_path, method: "delete" %></span>
+    <span class="mondo_nav" title="MonDo解説ページへのリンク"><%= link_to "？", {controller: "users", action: "detail"}, target: "_blank" %>　/　</span>
+    <span class="mondo_nav"><%= link_to "一覧へ", days_index_path %>　/　</span>
+    <span class="mondo_nav"><%= link_to "マイページ", controller: "users", action: "edit" %>　/　</span>
+    <span class="mondo_nav"><%= link_to "ログアウト", logout_path, method: "delete" %></span>
   </div>
 </div>

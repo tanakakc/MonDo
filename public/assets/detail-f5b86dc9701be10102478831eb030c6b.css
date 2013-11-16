@@ -4,7 +4,7 @@
 	      margin: 30px auto 100px auto;
       }
       
-      #content_post {
+      #content {
 	      width: 500px;
 	      margin-left: auto;
 	      margin-right: auto;
@@ -18,6 +18,8 @@
       #content-copy h1{
 	      letter-spacing: 4px;
 	      font-size: 30px;
+	      /*font-family: 'Londrina Outline', cursive;*/
+	      /*font-family: 'Skranji', cursive;*/
 	      font-family: 'Chelsea Market', cursive;
       }
       
@@ -25,8 +27,11 @@
 	      font-size:12px;
 	      letter-spacing: 2px;
 	      margin-top: 0;
+	      /*font-family: 'Londrina Outline', cursive;*/
+	      /*font-family: 'Skranji', cursive;*/
 	      font-family: 'Chelsea Market', cursive;
       }
+      
       
       a h1, h2{
 	      color: #333;
@@ -47,31 +52,16 @@
 	      opacity: 0.6;
       }
       
-      #big_date {
-          font-family: 'Chelsea Market', cursive;
-	      font-size: 250px;
-	      margin: 40px 0;
-      }
-      
-      #content_post .btn-default {
-	      font-weight: 200;
+      #content-movie p{
 	      font-size: 16px;
-	      letter-spacing: 1px;
-	      color: #ffffff;
-	      background: #333333;
-	      border-color: #282828;
-	      width: 94px;
       }
       
-      #content_post .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
-	      font-weight: 200;
-	      font-size: 16px;
-	      letter-spacing: 1px;
-	      color: #ffffff;
-	      background: #999999;
-	      border-color: #828282;
+      #signup-form input{
+	      width: 250px;
+	      margin-left: auto;
+	      margin-right: auto;
       }
-      
+            
       .modal-footer .btn-default {
 	      font-weight: 200;
 	      font-size: 16px;
@@ -91,3 +81,20 @@
 	      border-color: #828282;
       }
       
+      #detail{
+	      margin-top: 70px;
+      }
+      
+      #detail p{
+	      color: #888888;
+      }
+      
+      #detail a{
+	      color: #888888;
+      }
+      
+      #detail strong{
+	      font-family: 'Chelsea Market', cursive;
+	      letter-spacing: 2px;
+	      
+      }

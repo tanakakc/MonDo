@@ -41,7 +41,7 @@
       #content-copy .pull-right{
 	      margin-top: 33px;
       }
-      
+           
       .mondo_nav {
 	      font-size: 12px;
 	      opacity: 0.6;
@@ -49,8 +49,8 @@
       
       #big_date {
           font-family: 'Chelsea Market', cursive;
-	      font-size: 250px;
-	      margin: 40px 0;
+	      font-size: 190px;
+	      margin-top: 40px;
       }
       
       #content_post .btn-default {
@@ -90,4 +90,3 @@
 	      background: #999999;
 	      border-color: #828282;
       }
-      

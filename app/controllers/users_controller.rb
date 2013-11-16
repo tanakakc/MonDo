@@ -37,6 +37,7 @@ before_action :resend_full_signup, only: [:password_create]
     @user.update_attributes(password: params[:full_signup][:password], password_confirmation: params[:full_signup][:password_confirmation], act: true)
     if @user.save
       full_signup
+      sign_in @user
       render 'full_signup_success', layout: 'signup'
     else
       @user.act = false

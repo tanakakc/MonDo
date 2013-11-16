@@ -5,13 +5,14 @@ include Rails.application.routes.url_helpers
 
 class Batch::BatchEmail
 
-  def self.send_mail(email, date)
+  def self.send_mail(email, date, content)
     if defined?(DEV_URL)
       default_url_options[:host] = DEV_URL
     else
       default_url_options[:host] = ENV["PDC_URL"]
     end
     url = url_for(controller: "days", action: "new", id: date)
+    user = User.find_by(email: email)
     
     if defined?(MAIL_SECRET)
         user_address = MAIL_SECRET[:email]
@@ -47,11 +48,20 @@ class Batch::BatchEmail
       password:        passwd
     )
     
-    mail.deliver
+    if mail.deliver
+      user_id = User.find_by(email: email).id
+      user = Day.find_by(user_id: user_id, date: date)
+      user.mail_done = true
+      user.save
+    else
+      user.mail_done = false
+      user.save
+    end
   end
   
   def self.get_name_and_email
     @find = Day.where(date: "1").pluck(:user_id, :created_at)
+    @step_mails = StepMail.all.index_by(&:date) #StepMailテーブルの、dateカラムをkeyにハッシュを作成
     @find.each do |i|
       @user_info = User.where(id: i[0]).pluck(:name, :email).first
       
@@ -61,8 +71,12 @@ class Batch::BatchEmail
       @time_fix = @time_fix.to_i
       @passed_days = @time_fix / (60 * 60 * 24) + 1
       
+      if @passed_days < 31
+        @content = @step_mails[@passed_days][:content]
+      end
+      
       unless @passed_days >= 31 || @passed_days < 2
-        self.send_mail(@user_info[1], @passed_days)
+        self.send_mail(@user_info[1], @passed_days, @content)
       end
       
     end

@@ -1,7 +1,7 @@
       #container {
 	      text-align: center;
 	      width: 800px;
-	      margin: 100px auto;
+	      margin: 30px auto 100px auto;
       }
       
       #content {
@@ -30,6 +30,26 @@
 	      /*font-family: 'Londrina Outline', cursive;*/
 	      /*font-family: 'Skranji', cursive;*/
 	      font-family: 'Chelsea Market', cursive;
+      }
+      
+      
+      a h1, h2{
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      a:hover h1, h2{
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      #content-copy .pull-right{
+	      margin-top: 33px;
+      }
+      
+      .mondo_nav {
+	      font-size: 12px;
+	      opacity: 0.6;
       }
       
       #content-movie p{
