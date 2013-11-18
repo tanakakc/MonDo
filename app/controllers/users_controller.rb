@@ -59,6 +59,16 @@ before_action :resend_full_signup, only: [:password_create]
       render 'edit', layout: 'edit'
     end
   end
+  
+  def edit_db
+    @date = params[:id].to_i
+  end
+  
+  def create_db
+    StepMail.create(date: params[:edit_db][:date], content: params[:edit_db][:content])
+    date = params[:edit_db][:date].to_i + 1
+    redirect_to "/edit_db/#{date}"
+  end
     
   private
   
