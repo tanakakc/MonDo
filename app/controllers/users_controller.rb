@@ -65,7 +65,8 @@ before_action :resend_full_signup, only: [:password_create]
   end
   
   def create_db
-    StepMail.create(date: params[:edit_db][:date], content: params[:edit_db][:content])
+    sm = StepMail.find_by_date(params[:edit_db][:date])
+    sm.update(content: params[:edit_db][:content])
     date = params[:edit_db][:date].to_i + 1
     redirect_to "/edit_db/#{date}"
   end
