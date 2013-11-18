@@ -12,7 +12,9 @@ class Batch::BatchEmail
       default_url_options[:host] = ENV["PDC_URL"]
     end
     url = url_for(controller: "days", action: "new", id: date)
+    help_url = url_for(controller: "users", action: "detail")
     user = User.find_by(email: email)
+    last_question = Day.find_by(user_id: user.id, date: date - 1)
     
     if defined?(MAIL_SECRET)
         user_address = MAIL_SECRET[:email]
