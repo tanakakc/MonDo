@@ -59,6 +59,10 @@ before_action :resend_full_signup, only: [:password_create]
       render 'edit', layout: 'edit'
     end
   end
+  
+  def privacy_policy
+   render layout: 'detail'
+  end
     
   private
   

@@ -6,6 +6,7 @@ Apps30::Application.routes.draw do
   post '/password/create', to: 'users#password_create'
   get '/edit', to: 'users#edit'
   patch '/edit/update', to: 'users#update'
+  get '/privacy_policy', to: 'users#privacy_policy'
 
   post '/login', to: 'sessions#create'
   get '/login', to: 'sessions#new'

@@ -13,7 +13,7 @@
       <p style="font-size: 14px; margin-bottom: 30px;" align="left">30日間、自身に問いかけることによって<br>卓越道の歩みを強めるためのWebサービスです。</p>
     </div>
     <% unless signed_in? %>
-      <p><%= link_to "もどる", root_path, :'data-no-turbolink' => "true" %></p>
+      <p><%= link_to "トップページへ", root_path, :'data-no-turbolink' => "true" %></p>
     <% end %>
   </div>
   <% unless signed_in? %>  
