@@ -27,9 +27,9 @@
             <% new_ans = find_record[ans].to_s %>
             <% if new_ans.length >= 13 %>
               <% new_ans = new_ans[0..12] %>
-              <small><%= "#{q_num}\s.\s" + "#{new_ans}" + "..." %></small>
+              <small title="<%= "#{find_record[ans].to_s}" %>"><%= "#{q_num}\s.\s" + "#{new_ans}" + "..." %></small>
             <% else %>
-              <small><%= "#{q_num}\s.\s" + "#{new_ans}" %></small>
+              <small title="<%= "#{find_record[ans].to_s}" %>"><%= "#{q_num}\s.\s" + "#{new_ans}" %></small>
             <% end %>
             <% q_num = q_num + 1 %>
           <% end %>
