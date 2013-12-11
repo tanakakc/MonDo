@@ -2,8 +2,12 @@
   <%= render 'shared/hgroup3' %>
   <p class="text-danger"><%= notice %></p>
   <% remaining_days = 30 - @passed_days %>
-  <div id="content">    
-    <span align="right" class="text-info" style="display: block;"><%= "チャレンジ達成まで、あと【#{remaining_days}日】" %></span>
+  <div id="content">
+    <% if remaining_days > 0 %>    
+      <span align="right" class="text-info" style="display: block;"><%= "チャレンジ達成まで、あと【#{remaining_days}日】" %></span>
+    <% else %>
+      <span align="right" class="text-info" style="display: block;"><%= "チャレンジ達成！おめでとう！" %></span>
+    <% end %>
     <% date = 1 %>
     <% while date <= 30 && date <= @passed_days do %>
       <a href="/days/<%= date %>" class="days_card">
