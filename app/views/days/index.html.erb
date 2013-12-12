@@ -4,12 +4,19 @@
   <div id="content">    
     <span align="right" class="text-info" style="display: block;">
       <% remaining_days = 30 - @passed_days %>
-      <% if remaining_days > 0 %>
+      <% if remaining_days > 1 %>
         <%= "チャレンジ達成まで、あと【#{remaining_days}日】" %>
-      <% else %>
-        <%= "チャレンジ達成！おめでとう！" %>
+      <% elsif remaining_days == 0 %>
+        <%= "チャレンジ最終日！達成まで、あと１歩！" %>
       <% end %>
     </span>
+    <% if remaining_days < 0 %>
+      <div class="text-center mondo_result">
+        <h1 class="text-muted">チャレンジ達成！おめでとう！</h1>
+        <%= link_to "成績を見る", "#", :'data-toggle' => "modal", :'data-target' => "#mondo_result_modal", class: "btn btn-lg btn-success" %>
+      </div>
+      <%= render 'shared/result_modal' %>
+    <% end %>
     <% date = 1 %>
     <% while date <= 30 && date <= @passed_days do %>
       <a href="/days/<%= date %>" class="days_card">

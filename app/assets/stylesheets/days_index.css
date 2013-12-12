@@ -44,6 +44,10 @@
 	      opacity: 0.6;
       }
       
+      .mondo_result {
+	      margin-bottom: 35px;
+      }
+      
       .days_card .thumbnail{
            font-family: 'Chelsea Market', cursive;
 	       height: 250px; 
@@ -88,3 +92,36 @@
 	      height: 250px; 
 	      width: 250px;
       }
+      
+      .mondo_modal_title {
+	      font-size: 50px;
+      }
+      
+      .mondo_done_count {
+	      font-size: 100px;
+	      font-weight: bold;
+      }
+      
+      .modal-footer {
+	      text-align: center;
+      }
+      
+      .modal-footer .btn-default {
+	      font-weight: 200;
+	      font-size: 16px;
+	      letter-spacing: 1px;
+	      color: #ffffff;
+	      background: #333333;
+	      border-color: #282828;
+	      width: 94px;
+      }
+      
+      .modal-footer .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+	      font-weight: 200;
+	      font-size: 16px;
+	      letter-spacing: 1px;
+	      color: #ffffff;
+	      background: #999999;
+	      border-color: #828282;
+      }
+      
