@@ -8,7 +8,7 @@ APPS is powerfull seminar for biz created by toiee.
 
 This app inspired by ["Try something new for 30days"](http://www.ted.com/talks/matt_cutts_try_something_new_for_30_days.html) - Matt Cats.
 
-#Useage
+#How to use
 - Access [MonDo](http://apps.mondo30.com).
 - Create your account.
 - That's all!
