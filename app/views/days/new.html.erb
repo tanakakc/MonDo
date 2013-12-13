@@ -3,7 +3,11 @@
   <%= render 'shared/hgroup4' %>
   <p class="text-danger"><%= alert %></p>
   <p class="text-success"><%= notice %></p>
-  <h1 id="big_date"><%= @date %></h1>
+  <% if @date == 30 %>
+    <h1 id="big_date" style="background: url(/assets/mondo_complete_new.jpg);"><%= @date %></h1>
+  <% else %>
+    <h1 id="big_date"><%= @date %></h1>
+  <% end %>
   <div id="content_post">
     <div>
       <%= link_to "問答する", "#", :'data-toggle' => "modal", :'data-target' => "#mondo_edit_modal", class: "btn btn-default" %>
