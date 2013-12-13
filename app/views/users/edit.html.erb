@@ -24,6 +24,7 @@
       <%= f.submit "変更を保存する", class: "btn btn-default" %>
       <br>
       <br>
+      <br>
     <% end %>
     <h4 class="text-muted">メール配信設定</h4>
     <p>30日間、MonDoから届くメールの配信の設定は、こちらで変更可能です。</p>
@@ -41,15 +42,25 @@
     <% end %>
     <hr>
   </div>
-  <br>
   <div class="content_edit">
-    <h1 class="text-danger"><%= "チャレンジをリセットする" %></h1>
+    <h1 class="text-warning"><%= "チャレンジをリセットする" %></h1>
     <hr>
-    <p class="text-danger">
+    <p class="text-warning">
       「リセットする」ボタンを押すと、今までのチャレンジが全てリセットされ、<br>1日目の問答から再開となります。
     </p>
     <br>
-    <%= link_to "リセットする", days_reset_path, method: "delete", class: "btn btn-danger", confirm: "本当にリセットしてよろしいですか？" %>
+    <%= link_to "リセットする", days_reset_path, method: "delete", class: "btn btn-warning", confirm: "本当にリセットしてよろしいですか？" %>
+    <br>
+    <hr>
+  </div>
+  <div class="content_edit">
+    <h1 class="text-danger"><%= "アカウントを削除する" %></h1>
+    <hr>
+    <p class="text-danger">
+      アカウントを削除して、MonDoを退会することができます。
+    </p>
+    <br>
+    <%= link_to "退会する", account_delete_path, method: "delete", class: "btn btn-danger", confirm: "登録情報、MonDoの履歴は全て消去されます。よろしいですか？" %>
     <br>
     <hr>
   </div>

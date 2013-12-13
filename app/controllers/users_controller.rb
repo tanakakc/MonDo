@@ -71,6 +71,18 @@ before_action :resend_full_signup, only: [:password_create]
     end
   end
   
+  def destroy
+    @user = User.find_by_id(current_user.id)
+    @user_mondo = Day.where(user_id: @user.id)
+    
+    @user_mondo.destroy_all
+    @user.destroy
+    
+    flash[:notice] = "アカウント削除が正常に完了しました！"
+    redirect_to root_path and return
+  
+  end
+  
   def privacy_policy
    render layout: 'detail'
   end

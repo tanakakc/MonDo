@@ -8,6 +8,7 @@ Apps30::Application.routes.draw do
   patch '/edit/update', to: 'users#update'
   get '/privacy_policy', to: 'users#privacy_policy'
   patch '/select_mail', to: 'users#select_mail'
+  delete '/account_delete', to: 'users#destroy'
 
   post '/login', to: 'sessions#create'
   get '/login', to: 'sessions#new'
