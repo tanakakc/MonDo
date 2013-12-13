@@ -41,6 +41,43 @@
 	      opacity: 0.6;
       }
       
+      .choose_mondo_settings {
+	     padding: 50px 0;
+      }
+      
+      .mondo_settings {
+	      width: 250px;
+	      height: 100px;
+	      line-height: 50px;
+	      padding: 25px 0;
+	      display: inline-block;
+	      font-size: large;
+	      font-weight: bold;
+	      border: 1px solid #777;
+      }
+      
+      .mondo_settings:hover {
+	      width: 250px;
+	      height: 100px;
+	      line-height: 50px;
+	      padding: 25px 0;
+	      display: inline-block;
+	      font-size: large;
+	      font-weight: bold;
+	      border: 1px solid #777;
+	      box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.3);
+      }
+      
+      .choose_mondo_settings a {
+	      color: #777;
+          text-decoration: none;
+      }
+      
+      .choose_mondo_settings a:hover, .choose_mondo_settings a:focus {
+	      color: #333;
+          text-decoration: none;
+      }
+      
       .content_edit {
 	      width: 500px;
 	      margin-top: 50px;

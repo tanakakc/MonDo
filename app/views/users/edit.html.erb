@@ -2,7 +2,12 @@
 <div id="container">
   <%= render 'shared/hgroup5' %>
   <p class="text-danger"><%= alert %></p>
-  <div class="content_edit">
+  <div class="choose_mondo_settings">
+    <a href="#edit_profile"><span class="mondo_settings thumbnail glyphicon glyphicon-wrench"> 登録情報の変更</span></a>
+    <a href="#reset_mondo"><span class="mondo_settings thumbnail glyphicon glyphicon-time"> チャレンジのリセット</span></a>
+    <a href="#delete_account"><span class="mondo_settings thumbnail glyphicon glyphicon-trash"> アカウントの削除</span></a>
+  </div>
+  <div class="content_edit" id="edit_profile">
     <h1 class="text-muted"><%= "登録情報を変更する" %></h1>
     <hr>
     <p class="text-success"><%= notice %></p>
@@ -42,7 +47,7 @@
     <% end %>
     <hr>
   </div>
-  <div class="content_edit">
+  <div class="content_edit" id="reset_mondo">
     <h1 class="text-warning"><%= "チャレンジをリセットする" %></h1>
     <hr>
     <p class="text-warning">
@@ -53,7 +58,7 @@
     <br>
     <hr>
   </div>
-  <div class="content_edit">
+  <div class="content_edit" id="delete_account">
     <h1 class="text-danger"><%= "アカウントを削除する" %></h1>
     <hr>
     <p class="text-danger">
