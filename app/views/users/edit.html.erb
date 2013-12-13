@@ -23,8 +23,23 @@
       <br>
       <%= f.submit "変更を保存する", class: "btn btn-default" %>
       <br>
-      <hr>
+      <br>
     <% end %>
+    <h4 class="text-muted">メール配信設定</h4>
+    <p>30日間、MonDoから届くメールの配信の設定は、こちらで変更可能です。</p>
+    <br>
+    <%= form_for :select_mail, url: "/select_mail", method: "patch" do |f| %>
+      <% if @user.receive_mail == true %>
+        <p><span><%= f.radio_button 'receive_mail', true, { checked: true } %><%= "　配信を希望する" %>　</span>
+        <span><%= f.radio_button 'receive_mail', false, {} %><%= "　配信を希望しない" %></span></p>
+      <% elsif @user.receive_mail == false %>
+        <p><span><%= f.radio_button 'receive_mail', true, {} %><%= "　配信を希望する" %>　</span>
+        <span><%= f.radio_button 'receive_mail', false, { checked: true } %><%= "　配信を希望しない" %></span></p>
+      <% end %>
+      <br>
+       <%= f.submit "保存", class: "btn btn-xs btn-default", style: "font-size: 12px; width: 60px;"  %>
+    <% end %>
+    <hr>
   </div>
   <br>
   <div class="content_edit">

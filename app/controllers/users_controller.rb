@@ -60,6 +60,17 @@ before_action :resend_full_signup, only: [:password_create]
     end
   end
   
+  def select_mail
+    @user = User.find_by(id: current_user.id)
+    
+    @user.receive_mail = params[:select_mail][:receive_mail]
+    
+    if @user.save!(validate: false)
+      flash[:notice] = "メール配信設定を変更しました！"
+      redirect_to controller: "users", action: "edit", id: current_user.id and return
+    end
+  end
+  
   def privacy_policy
    render layout: 'detail'
   end

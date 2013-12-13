@@ -65,7 +65,9 @@ class Batch::BatchEmail
     @find = Day.where(date: "1").pluck(:user_id, :created_at)
     @step_mails = StepMail.all.index_by(&:date) #StepMailテーブルの、dateカラムをkeyにハッシュを作成
     @find.each do |i|
-      @user_info = User.where(id: i[0]).pluck(:name, :email).first
+      @user = User.where(id: i[0])
+      @is_user_need_mail = @user.first.receive_mail
+      @user_info = @user.pluck(:name, :email).first
       
       @time_fix = i[1] - 3.hours
       @time_fix = @time_fix.change(hour: 3, minutes: 0, seconds: 0)
@@ -73,12 +75,14 @@ class Batch::BatchEmail
       @time_fix = @time_fix.to_i
       @passed_days = @time_fix / (60 * 60 * 24) + 1
       
-      if @passed_days < 31
+      if @passed_days < 31 && @passed_days > 1
         @content = @step_mails[@passed_days][:content]
       end
       
-      unless @passed_days >= 31 || @passed_days < 2
-        self.send_mail(@user_info[1], @passed_days, @content)
+      if @is_user_need_mail == true
+        unless @passed_days >= 31 || @passed_days < 2
+          self.send_mail(@user_info[1], @passed_days, @content)
+        end
       end
       
     end
