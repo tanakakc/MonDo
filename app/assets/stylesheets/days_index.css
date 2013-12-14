@@ -95,11 +95,13 @@
       
       .mondo_modal_title {
 	      font-size: 50px;
+	      font-family: 'Chelsea Market', cursive;
       }
       
       .mondo_done_count {
 	      font-size: 100px;
 	      font-weight: bold;
+	      font-family: 'Chelsea Market', cursive;
       }
       
       .modal-footer {
