@@ -7,6 +7,24 @@ before_action :started_user, only: [:index, :show]
 before_action :how_many_days_passed?, only: [:index, :show, :edit]
 
   def index
+    @user_done = Day.where(user_id: @current_user.id, done: true)
+    @user_done_count = @user_done.count
+    
+    case @user_done_count
+    when  0 .. 10
+      @title_of_mondo = TITLE_OF_MONDO[:retry]
+      @message_from_mondo = MESSAGE_FROM_MONDO[:retry]
+    when 11 .. 20
+      @title_of_mondo = TITLE_OF_MONDO[:beginner]
+      @message_from_mondo = MESSAGE_FROM_MONDO[:beginner]
+    when 21 .. 29
+      @title_of_mondo = TITLE_OF_MONDO[:senior]
+      @message_from_mondo = MESSAGE_FROM_MONDO[:senior]
+    when 30
+      @title_of_mondo = TITLE_OF_MONDO[:master]
+      @message_from_mondo = MESSAGE_FROM_MONDO[:master]
+    end
+    
     render layout: "days_index"
   end  
   

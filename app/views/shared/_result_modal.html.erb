@@ -1,0 +1,22 @@
+<!-- Modal -->
+<div class="modal fade  text-center" id="mondo_result_modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title text-warning mondo_modal_title" id="myModalLabel">CONGRATULATION!!</h2>
+      </div>
+      <div class="modal-body">
+        <p><%= "〜 " + @current_user.name + " さんの成績〜" %></p>
+        <p class="mondo_done_count"><%= "#{@user_done_count} / 30" %></p>
+        <hr>
+        <div class="mondo_modal_body2">
+          <h3><%= @title_of_mondo %></h3>
+          <%= simple_format( @message_from_mondo, class: "text-muted" ) %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
