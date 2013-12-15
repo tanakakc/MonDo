@@ -75,11 +75,12 @@ before_action :resend_full_signup, only: [:password_create]
     @user = User.find_by_id(current_user.id)
     @user_mondo = Day.where(user_id: @user.id)
     
-    @user_mondo.destroy_all
-    @user.destroy
-    
-    flash[:notice] = "アカウント削除が正常に完了しました！"
-    redirect_to root_path and return
+    if delete_account_sendmail
+      @user_mondo.destroy_all
+      @user.destroy
+      flash[:notice] = "アカウント削除が正常に完了しました！"
+      redirect_to root_path and return
+    end
   
   end
   
@@ -204,6 +205,47 @@ before_action :resend_full_signup, only: [:password_create]
         to       user.email
         subject  "【MonDo】ようこそ、MonDoへ！"
         body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/full_signup.text.erb")).result binding
+      end
+      
+      mail.charset = 'utf-8' # It's important!
+      mail.delivery_method(:smtp,
+        address:         'smtp.gmail.com',
+        port:            '587',
+        domain:          'smtp.gmail.com',
+        authentication:  'plain',
+        user_name:       user_address,
+        password:        passwd
+      )
+    
+      mail.deliver
+    end
+    
+    def delete_account_sendmail
+      require 'mail'
+      user = User.find_by_id(current_user.id)
+      
+      if defined?(MAIL_SECRET)
+        user_address = MAIL_SECRET[:email]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format   
+      else
+        user_address = ENV["SMTP_USERNAME"]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format
+      end
+                  
+      if defined?(MAIL_SECRET)
+        passwd = MAIL_SECRET[:password]
+      else
+        passwd = ENV["SMTP_PASSWD"]
+      end
+      mail = Mail.new do
+        from     user_name
+        to       user.email
+        subject  "【MonDo】MonDoの退会処理が完了しました！"
+        body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/delete_account.text.erb")).result binding
       end
       
       mail.charset = 'utf-8' # It's important!
