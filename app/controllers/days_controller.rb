@@ -127,6 +127,7 @@ before_action :how_many_days_passed?, only: [:index, :show, :edit]
   
   def destroy
     Day.where(user_id: current_user.id).destroy_all
+    reset_mondo_sendmail
     flash[:notice] = "リセットしました！"
     redirect_to controller: "days", action: "new", id: 1
   end
@@ -180,6 +181,47 @@ before_action :how_many_days_passed?, only: [:index, :show, :edit]
         addrecord.save
         date = date + 1
       end
+    end
+    
+    def reset_mondo_sendmail
+      require 'mail'
+      user = User.find_by_id(current_user.id)
+      url = url_for(controller: "days", action: "new", id: 1)
+      if defined?(MAIL_SECRET)
+        user_address = MAIL_SECRET[:email]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format   
+      else
+        user_address = ENV["SMTP_USERNAME"]
+        text_address = "\"MonDo App\" <#{user_address}>"
+        make_user = Mail::Address.new(text_address)
+        user_name = make_user.format
+      end
+                  
+      if defined?(MAIL_SECRET)
+        passwd = MAIL_SECRET[:password]
+      else
+        passwd = ENV["SMTP_PASSWD"]
+      end
+      mail = Mail.new do
+        from     user_name
+        to       user.email
+        subject  "【MonDo】MonDoをリセットしました！"
+        body     ERB.new(File.read(Rails.root.to_s + "/app/views/mail_templates/mondo_reset.text.erb")).result binding
+      end
+      
+      mail.charset = 'utf-8' # It's important!
+      mail.delivery_method(:smtp,
+        address:         'smtp.gmail.com',
+        port:            '587',
+        domain:          'smtp.gmail.com',
+        authentication:  'plain',
+        user_name:       user_address,
+        password:        passwd
+      )
+    
+      mail.deliver
     end
     
 end
