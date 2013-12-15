@@ -1,0 +1,120 @@
+      #container {
+	      text-align: center;
+	      width: 800px;
+	      margin: 30px auto 100px auto;
+      }
+      
+      #content-copy {
+	      margin-bottom: 0;
+	      text-align: left;
+      }
+      
+      #content-copy h1{
+	      letter-spacing: 4px;
+	      font-size: 30px;
+	      font-family: 'Chelsea Market', cursive;
+      }
+      
+      #content-copy h2{
+	      font-size:12px;
+	      letter-spacing: 2px;
+	      margin-top: 0;
+	      font-family: 'Chelsea Market', cursive;
+      }
+      
+      a h1, h2{
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      a:hover h1, h2{
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      #content-copy .pull-right{
+	      margin-top: 33px;
+      }
+      
+      .mondo_nav {
+	      font-size: 12px;
+	      opacity: 0.6;
+      }
+      
+      .choose_mondo_settings {
+	     padding: 50px 0;
+      }
+      
+      .mondo_settings {
+	      width: 250px;
+	      height: 100px;
+	      line-height: 50px;
+	      padding: 25px 0;
+	      display: inline-block;
+	      font-size: large;
+	      font-weight: bold;
+	      border: 1px solid #777;
+      }
+      
+      .mondo_settings:hover {
+	      width: 250px;
+	      height: 100px;
+	      line-height: 50px;
+	      padding: 25px 0;
+	      display: inline-block;
+	      font-size: large;
+	      font-weight: bold;
+	      border: 1px solid #777;
+	      box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.3);
+      }
+      
+      .choose_mondo_settings a {
+	      color: #777;
+          text-decoration: none;
+      }
+      
+      .choose_mondo_settings a:hover, .choose_mondo_settings a:focus {
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      .content_edit {
+	      width: 500px;
+	      margin-top: 50px;
+	      margin-left: auto;
+	      margin-right: auto;
+	      padding-bottom: 40px;
+      }
+      
+      .content_edit h1{
+	      font-size: 25px;
+	      margin: 0 auto;
+      }
+      
+      .content_edit label{
+          display: block;
+	      text-align: left;
+      }
+      
+      .content_edit .btn {
+	      font-size: 16px;
+      }
+      
+      .content_edit .btn-default {
+	      font-weight: 200;
+	      font-size: 16px;
+	      letter-spacing: 1px;
+	      color: #ffffff;
+	      background: #333333;
+	      border-color: #282828;
+	      width: 140px;
+      }
+      
+      .content_edit .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+	      font-weight: 200;
+	      font-size: 16px;
+	      letter-spacing: 1px;
+	      color: #ffffff;
+	      background: #999999;
+	      border-color: #828282;
+      }

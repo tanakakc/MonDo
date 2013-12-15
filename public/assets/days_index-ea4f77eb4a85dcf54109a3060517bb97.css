@@ -1,0 +1,129 @@
+      #container {
+	      width: 800px;
+	      margin: 30px auto 100px auto;
+      }
+      
+      #content {
+	      margin: 0 auto;
+      }
+      
+      #content-copy {
+	      margin-bottom: 0;
+	      text-align: left;
+      }
+      
+      #content-copy h1{
+	      letter-spacing: 4px;
+	      font-size: 30px;
+	      font-family: 'Chelsea Market', cursive;
+      }
+      
+      #content-copy h2{
+	      font-size:12px;
+	      letter-spacing: 2px;
+	      margin-top: 0;
+	      font-family: 'Chelsea Market', cursive;
+      }
+      
+      a h1, h2{
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      a:hover h1, h2{
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      #content-copy .pull-right{
+	      margin-top: 33px;
+      }
+      
+      .mondo_nav {
+	      font-size: 12px;
+	      opacity: 0.6;
+      }
+      
+      .mondo_result {
+	      margin-bottom: 35px;
+      }
+      
+      .days_card .thumbnail{
+           font-family: 'Chelsea Market', cursive;
+	       height: 250px; 
+	       width: 250px; 
+	       display: inline-block; 
+	       margin: 5px 7px; padding: 4px 10px;
+	       border: 1px solid #777;
+      }
+      
+      .days_card .thumbnail:hover{
+           font-family: 'Chelsea Market', cursive;
+	       height: 250px; 
+	       width: 250px; 
+	       display: inline-block; 
+	       margin: 5px 7px; padding: 4px 10px;
+	       border: 1px solid #777;
+	       box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.3);
+      }
+      
+      .days_card small{
+	      display: block;
+	      color: #999999;
+	      padding: 15px 15px 0 15px;
+      }
+      
+      a.days_card {
+	      color: #777;
+          text-decoration: none;
+      }
+      
+      a:hover.days_card, a:focus.days_card {
+	      color: #333;
+          text-decoration: none;
+      }
+      
+      #date {
+	      font-size: 50px;
+      }
+      
+      .days_card ul {
+          list-style-type: none;
+	      height: 250px; 
+	      width: 250px;
+      }
+      
+      .mondo_modal_title {
+	      font-size: 50px;
+	      font-family: 'Chelsea Market', cursive;
+      }
+      
+      .mondo_done_count {
+	      font-size: 100px;
+	      font-weight: bold;
+	      font-family: 'Chelsea Market', cursive;
+      }
+      
+      .modal-footer {
+	      text-align: center;
+      }
+      
+      .modal-footer .btn-default {
+	      font-weight: 200;
+	      font-size: 16px;
+	      letter-spacing: 1px;
+	      color: #ffffff;
+	      background: #333333;
+	      border-color: #282828;
+	      width: 94px;
+      }
+      
+      .modal-footer .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+	      font-weight: 200;
+	      font-size: 16px;
+	      letter-spacing: 1px;
+	      color: #ffffff;
+	      background: #999999;
+	      border-color: #828282;
+      }
+      
