@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
 
   before_save { self.email = email.downcase }
-  validates :name, presence: true
+  #validates :name, presence: true
 end
