@@ -1,4 +1,7 @@
 Apps30::Application.routes.draw do
+  get "static_pages/home"
+  get "static_pages/about"
+  get "static_pages/privacy_policy"
   root 'users#new'
   post '/', to: 'users#create'
   get '/detail', to: 'users#detail'

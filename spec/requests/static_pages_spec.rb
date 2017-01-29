@@ -9,4 +9,11 @@ describe "StaticPages" do
     end
   end
 
+  describe "About page" do
+    it "should have the content 'MonDoとは？'" do
+      visit '/about'
+      expect(page).to have_content("MonDoとは？")
+    end
+  end
+
 end
