@@ -1,8 +1,8 @@
 Apps30::Application.routes.draw do
   root 'static_pages#home'
 
-  get "static_pages/about", as: "about"
-  get "static_pages/privacy_policy", as: "privacy_policy"
+  get "/about", to: 'static_pages#about', as: "about"
+  get "/privacy_policy", to: 'static_pages#privacy_policy', as: "privacy_policy"
 
   resources :users, only: [:new]
 
