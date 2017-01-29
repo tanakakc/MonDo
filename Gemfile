@@ -3,14 +3,24 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.1'
 
-group :development do
+group :development, :test do
   gem 'sqlite3', '1.3.8'
+  gem 'rspec-rails', '2.13.1'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'spring'
 end
 
-gem 'sass-rails', '4.0.1'
+group :test do
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'capybara', '2.1.0'
+end
+
+gem 'rake', '< 11.0'
+gem 'devise'
+gem 'devise-i18n'
+gem 'bootstrap-sass', '~> 3.1.1'
+gem 'sass-rails', '>= 3.2'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
