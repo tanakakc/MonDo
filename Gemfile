@@ -17,6 +17,8 @@ group :test do
 end
 
 gem 'rake', '< 11.0'
+gem 'devise'
+gem 'devise-i18n'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'sass-rails', '>= 3.2'
 gem 'bcrypt-ruby', '~> 3.1.2'

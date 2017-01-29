@@ -4,10 +4,11 @@ Apps30::Application.routes.draw do
   get "/about", to: 'static_pages#about', as: "about"
   get "/privacy_policy", to: 'static_pages#privacy_policy', as: "privacy_policy"
 
-  resources :users, only: [:new]
+  devise_for :users
+  #resources :users, only: [:new]
 
   post '/', to: 'users#create'
-  get '/users/password/:id/:hash_token', to: 'users#password', as: 'password'
+  #get '/users/password/:id/:hash_token', to: 'users#password', as: 'password'
   post '/password/create', to: 'users#password_create'
   get '/edit', to: 'users#edit'
   patch '/edit/update', to: 'users#update'
