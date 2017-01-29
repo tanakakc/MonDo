@@ -1,2 +1,14 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center">
+        <h1 class="title">MonDo</h1>
+        <%= link_to "アカウント登録", new_user_path, { class: "btn btn-primary" } %>
+        <%= link_to "ログイン", login_path, { class: "btn btn-default" } %>
+      </div>
+    </div>
+  </div>
+
+  <%= render "shared/footer" %>
+
+</div>

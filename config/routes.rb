@@ -1,28 +1,29 @@
 Apps30::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/about"
-  get "static_pages/privacy_policy"
-  root 'users#new'
+  root 'static_pages#home'
+
+  get "static_pages/about", as: "about"
+  get "static_pages/privacy_policy", as: "privacy_policy"
+
+  resources :users, only: [:new]
+
   post '/', to: 'users#create'
-  get '/detail', to: 'users#detail'
   get '/users/password/:id/:hash_token', to: 'users#password', as: 'password'
   post '/password/create', to: 'users#password_create'
   get '/edit', to: 'users#edit'
   patch '/edit/update', to: 'users#update'
-  get '/privacy_policy', to: 'users#privacy_policy'
   patch '/select_mail', to: 'users#select_mail'
   delete '/account_delete', to: 'users#destroy'
 
   post '/login', to: 'sessions#create'
   get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy'
-  
+
   get '/days/index', to: 'days#index'
   get '/days/:id/new', to: 'days#new', constraints: {:id => /[0-9]+/}
   post '/days', to: 'days#create'
   get  '/days/:id', to: 'days#show', constraints: {:id => /[0-9]+/}
   delete '/days/reset', to: 'days#destroy'
-    
+
   get  '/password_resets/new', to: 'password_resets#new'
   post '/password_resets', to: 'password_resets#create'
   get  '/password_resets/:hash_token/edit', to: 'password_resets#edit'
@@ -68,7 +69,7 @@ Apps30::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

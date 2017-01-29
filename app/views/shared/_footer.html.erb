@@ -1,12 +1,11 @@
-<footer id="detail">
+<footer id="detail" class="text-center">
   <p>
-    <%= link_to detail_path do %>
+    <%= link_to about_path do %>
       <strong>30Days CHALLENGE</strong>について
     <% end %>　|　
-    <%= link_to "privacy_policy",  '/privacy_policy'%>　|　
-    <a href="http://toiee.jp">about us</a>
+    <%= link_to "プライバシーポリシー", privacy_policy_path%>
   </p>
-  
+
   <br>
-  <p>© 2013 toiee</p>
+  <p>© <%= Time.now.year %> tanakakc</p>
 </footer>

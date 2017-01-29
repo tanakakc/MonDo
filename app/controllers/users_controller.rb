@@ -6,12 +6,6 @@ before_action :signed_in_user2, only: [:edit, :update]
 before_action :are_you_full_signuped?, :are_you_authorized?, only: [:password]
 before_action :resend_full_signup, only: [:password_create]
 
-  def index
-  end
-
-  def detail
-  end
-
   def new
   end
 
@@ -78,9 +72,6 @@ before_action :resend_full_signup, only: [:password_create]
       redirect_to root_path and return
     end
 
-  end
-
-  def privacy_policy
   end
 
   private
